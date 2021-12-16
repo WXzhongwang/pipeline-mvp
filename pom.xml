@@ -11,6 +11,7 @@
 
     <modules>
         <module>pipeline-common</module>
+        <module>pipeline-framework</module>
     </modules>
 
     <properties>
