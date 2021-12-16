@@ -14,6 +14,7 @@ public class MemoryManager {
     private final static Logger logger = LoggerFactory.getLogger(MemoryManager.class);
 
     private volatile long lastFullGCTimestamp;
+
     private MemoryManagerConfig config;
 
     public MemoryManager(MemoryManagerConfig config) {
@@ -30,7 +31,9 @@ public class MemoryManager {
             return;
         }
         long lastFullGCInterval = System.currentTimeMillis() - lastFullGCTimestamp;
-        if (lastFullGCInterval < config.fullGCTimeIntervalMs) { return;}
+        if (lastFullGCInterval < config.fullGCTimeIntervalMs) {
+            return;
+        }
         synchronized (this) {
             lastFullGCInterval = System.currentTimeMillis() - lastFullGCTimestamp;
             Memory memory = JvmManager.getCurrentMemory();
