@@ -1,4 +1,4 @@
-package com.rany.ops.framework.sink;
+package com.rany.ops.framework.core.sink;
 
 
 import com.rany.ops.framework.core.AbstractComponent;

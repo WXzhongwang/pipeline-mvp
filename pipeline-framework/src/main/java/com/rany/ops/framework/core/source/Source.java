@@ -1,4 +1,4 @@
-package com.rany.ops.framework.channel;
+package com.rany.ops.framework.core.source;
 
 import com.rany.ops.framework.core.AbstractComponent;
 
@@ -9,9 +9,9 @@ import com.rany.ops.framework.core.AbstractComponent;
  * @email 18668485565@163.com
  */
 
-public abstract class Channel<T, R> extends AbstractComponent<T, R> {
+public abstract class Source<T, R> extends AbstractComponent<T, R> implements Bootable {
 
-    protected Channel(String name) {
+    protected Source(String name) {
         super(name);
     }
 }
