@@ -29,6 +29,8 @@
         <commons-lang3.version>3.12.0</commons-lang3.version>
         <junit.version>4.12</junit.version>
         <dubbo.version>2.6.2</dubbo.version>
+        <curator.version>2.12.0</curator.version>
+        <zkclient.version>0.11</zkclient.version>
         <commons.pool2.version>2.6.2</commons.pool2.version>
         <commons.io.version>2.4</commons.io.version>
         <commons.codec.version>1.10</commons.codec.version>
@@ -144,6 +146,23 @@
                 <groupId>org.openjdk.jmh</groupId>
                 <artifactId>jmh-generator-annprocess</artifactId>
                 <version>${jmh.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.101tec</groupId>
+                <artifactId>zkclient</artifactId>
+                <version>${zkclient.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.apache.zookeeper</groupId>
+                        <artifactId>zookeeper</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${curator.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
