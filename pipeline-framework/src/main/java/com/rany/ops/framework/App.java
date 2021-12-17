@@ -48,5 +48,4 @@ public class App {
             waitFlag = false;
         }
     }
-
 }
