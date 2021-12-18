@@ -11,7 +11,7 @@ import java.util.Map;
  * @author zhongshengwang
  * @description Fake Source
  * @date 2021/12/18 9:11 下午
- * @email zhongshengwang@shuwen.com
+ * @email 18668485565@163.com
  */
 
 public class FakeSource extends Source {
@@ -43,23 +43,6 @@ public class FakeSource extends Source {
         return true;
     }
 
-    private void run() {
-        running = true;
-        while (running) {
-            KvRecords kvRecords = new KvRecords();
-            KvRecord kvRecord = new KvRecord();
-            kvRecords.addRecord(kvRecord);
-            for (int i = 0; i < kvRecords.getRecordCnt(); i++) {
-                KvRecord item = kvRecords.getRecord(i);
-                this.execute(item);
-            }
-            try {
-                Thread.sleep(timeIntervalMs);
-            } catch (InterruptedException ignore) {
-            }
-        }
-    }
-
     @Override
     public boolean shutdown() {
         logger.info("fake receiver is stopping ...");
@@ -76,4 +59,23 @@ public class FakeSource extends Source {
         }
         return super.shutdown();
     }
+
+    private void run() {
+        running = true;
+        while (running) {
+            KvRecords kvRecords = new KvRecords();
+            KvRecord kvRecord = new KvRecord();
+            kvRecords.addRecord(kvRecord);
+            for (int i = 0; i < kvRecords.getRecordCnt(); i++) {
+                KvRecord item = kvRecords.getRecord(i);
+                this.execute(item);
+            }
+            try {
+                Thread.sleep(timeIntervalMs);
+            } catch (InterruptedException e) {
+                logger.error("stop fake source occur an error", e);
+            }
+        }
+    }
+
 }

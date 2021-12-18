@@ -1,7 +1,6 @@
 package com.rany.ops.framework.core.channel;
 
-
-import com.rany.ops.framework.kv.KvRecord;
+import com.rany.ops.framework.core.AbstractComponent;
 
 /**
  * @author zhongshengwang
@@ -10,9 +9,9 @@ import com.rany.ops.framework.kv.KvRecord;
  * @email 18668485565@163.com
  */
 
-public abstract class StreamChannel extends Channel<KvRecord, KvRecord> {
+public abstract class AbstractChannel<T, R> extends AbstractComponent<T, R> {
 
-    protected StreamChannel(String name) {
+    protected AbstractChannel(String name) {
         super(name);
     }
 }
