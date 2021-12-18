@@ -1,15 +1,15 @@
 package com.rany.ops.framework.core.source;
 
-import com.rany.ops.framework.core.AbstractComponent;
+import com.rany.ops.framework.kv.KvRecord;
 
 /**
+ * 抽象Source
  * @author zhongshengwang
- * @description TODO
- * @date 2021/12/16 10:51 上午
+ * @description 抽象Source
+ * @date 2021/12/17 8:26 下午
  * @email 18668485565@163.com
  */
-
-public abstract class Source<T, R> extends AbstractComponent<T, R> implements Bootable {
+public abstract class Source extends AbstractSource<KvRecord, KvRecord> {
 
     protected Source(String name) {
         super(name);

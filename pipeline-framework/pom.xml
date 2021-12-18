@@ -13,7 +13,7 @@
     <artifactId>pipeline-framework</artifactId>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.abstractSource>8</maven.compiler.abstractSource>
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 

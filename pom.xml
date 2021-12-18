@@ -12,6 +12,7 @@
     <modules>
         <module>pipeline-common</module>
         <module>pipeline-framework</module>
+        <module>pipeline-plugin</module>
     </modules>
 
     <properties>
@@ -19,7 +20,7 @@
         <jdk.version>1.8</jdk.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.abstractSource>8</maven.compiler.abstractSource>
         <maven.compiler.target>8</maven.compiler.target>
 
         <commons-collections.version>3.2.2</commons-collections.version>
@@ -45,6 +46,22 @@
 
     <dependencyManagement>
         <dependencies>
+            <dependency>
+                <groupId>com.rany.ops</groupId>
+                <artifactId>pipeline-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rany.ops</groupId>
+                <artifactId>pipeline-framework</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rany.ops</groupId>
+                <artifactId>pipeline-plugin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>junit</groupId>
                 <artifactId>junit</artifactId>

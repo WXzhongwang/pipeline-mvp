@@ -1,7 +1,7 @@
 package com.rany.ops.framework.core.sink;
 
 
-import com.rany.ops.framework.kv.KvRecord;
+import com.rany.ops.framework.core.AbstractComponent;
 
 /**
  * 抽象Sink
@@ -11,9 +11,9 @@ import com.rany.ops.framework.kv.KvRecord;
  * @email 18668485565@163.com
  */
 
-public abstract class Sink extends AbstractSink<KvRecord, KvRecord> {
+public abstract class AbstractSink<T, R> extends AbstractComponent<T, R> {
 
-    protected Sink(String name) {
+    protected AbstractSink(String name) {
         super(name);
     }
 }
