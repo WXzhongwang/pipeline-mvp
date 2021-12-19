@@ -20,4 +20,20 @@ public class AppConfig implements Serializable {
      * 紧急联系人
      */
     private String emergency;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmergency() {
+        return emergency;
+    }
+
+    public void setEmergency(String emergency) {
+        this.emergency = emergency;
+    }
 }
