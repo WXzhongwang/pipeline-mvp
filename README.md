@@ -1,9 +1,12 @@
 # 流式数据处理框架
+
 1. 仿照flume、netty等框架的设计思路
 2. 快速开发框架
 3. 业务、框架分离
+4. 统一资源管理
 
 ## 依赖
+
 ```
 <commons-collections.version>3.2.2</commons-collections.version>
 <log4j.version>1.2.17</log4j.version>
@@ -26,3 +29,15 @@
 <jmh.version>1.32</jmh.version>
 ```
 
+## 注意
+
+```
+usage: pipeline [-c] [-h] [-r]
+-c,--config   config file path for program, required param
+-h,--help     help information for program pipeline app
+-r,--res      res file path for program, required param
+
+如果启动看到该信息，说明添加启动参数
+-c --config 流程配置文件路径
+-r --res    资源文件路径
+```

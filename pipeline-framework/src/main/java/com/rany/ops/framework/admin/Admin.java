@@ -23,7 +23,6 @@ public class Admin {
 
     public boolean init() {
         logger.info("pipeline app [{}] admin center start to init...", config.getApp().getName());
-
         logger.info("pipeline app [{}] admin center start success...", config.getApp().getName());
         return true;
     }
