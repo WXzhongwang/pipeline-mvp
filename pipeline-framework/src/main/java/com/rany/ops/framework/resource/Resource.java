@@ -40,8 +40,7 @@ public abstract class Resource<T> {
         try {
             res = create(config);
         } catch (Exception e) {
-            logger.error("build resource object failed, cause[{}]", e.getMessage());
-            logger.error(e.getMessage(), e);
+            logger.error("build resource object failed", e);
         }
     }
 
