@@ -1,13 +1,14 @@
 package com.rany.ops.framework.config;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
  * 资源配置
  *
  * @author zhongshengwang
- * @description TODO
+ * @description 资源配置
  * @date 2021/12/19 8:38 下午
  * @email 18668485565@163.com
  */
@@ -20,7 +21,7 @@ public class ResourceConfig implements Serializable {
 
     private String instanceNum;
 
-    private Map<String, Object> configMap;
+    private Map<String, Object> configMap = new HashMap<>();
 
     public String getName() {
         return name;

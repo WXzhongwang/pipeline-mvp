@@ -16,12 +16,12 @@ import java.util.Map;
 
 public abstract class Resource<T> {
 
-    private final static Logger logger = LoggerFactory.getLogger(Resource.class);
+    private static final Logger logger = LoggerFactory.getLogger(Resource.class);
 
     protected String name;
     protected T res;
 
-    public Resource(String name) {
+    protected Resource(String name) {
         this.name = name;
     }
 
