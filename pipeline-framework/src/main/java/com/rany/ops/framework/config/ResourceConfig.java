@@ -19,7 +19,7 @@ public class ResourceConfig implements Serializable {
 
     private String className;
 
-    private String instanceNum;
+    private Integer instanceNum;
 
     private Map<String, Object> configMap = new HashMap<>();
 
@@ -39,11 +39,11 @@ public class ResourceConfig implements Serializable {
         this.className = className;
     }
 
-    public String getInstanceNum() {
+    public Integer getInstanceNum() {
         return instanceNum;
     }
 
-    public void setInstanceNum(String instanceNum) {
+    public void setInstanceNum(Integer instanceNum) {
         this.instanceNum = instanceNum;
     }
 
