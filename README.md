@@ -31,13 +31,15 @@
 
 ## 注意
 
+如果启动看到该信息，说明添加启动参数
+
 ```
 usage: pipeline [-c] [-h] [-r]
 -c,--config   config file path for program, required param
 -h,--help     help information for program pipeline app
 -r,--res      res file path for program, required param
 
-如果启动看到该信息，说明添加启动参数
+
 -c --config 流程配置文件路径
 -r --res    资源文件路径
 ```
