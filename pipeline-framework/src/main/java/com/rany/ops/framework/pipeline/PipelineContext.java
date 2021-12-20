@@ -2,6 +2,7 @@ package com.rany.ops.framework.pipeline;
 
 import com.rany.ops.framework.config.ProcessConfig;
 import com.rany.ops.framework.resource.ResourceManager;
+import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -44,7 +45,10 @@ public class PipelineContext implements IPipelineLifeCycle {
     public boolean prepare() {
         logger.info("multiple pipe line context start to prepare...");
         if (Objects.nonNull(process)) {
-
+            if (CollectionUtils.isEmpty(process.getSources())) {
+                logger.warn("no source configured");
+                return false;
+            }
         }
         logger.info("multiple pipe line context prepare success...");
         return true;
