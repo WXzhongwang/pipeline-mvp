@@ -1,13 +1,12 @@
 package com.rany.ops.framework.pipeline;
 
 import com.rany.ops.framework.config.ProcessConfig;
-import com.rany.ops.framework.core.LifeCycle;
 import com.rany.ops.framework.resource.ResourceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.Map;
+import java.util.Objects;
 
 /**
  * pipeline管理
@@ -18,7 +17,7 @@ import java.util.Map;
  * @email 18668485565@163.com
  */
 
-public class PipelineContext implements LifeCycle {
+public class PipelineContext implements IPipelineLifeCycle {
 
     private static final Logger logger = LoggerFactory.getLogger(PipelineContext.class);
 
@@ -37,23 +36,29 @@ public class PipelineContext implements LifeCycle {
      */
     private List<ProcessConfig> processConfigs;
 
-    
+
     public PipelineContext(List<ProcessConfig> processConfigs) {
         this.processConfigs = processConfigs;
     }
 
+
     @Override
-    public boolean init(Map<String, Object> config) {
-        return false;
+    public boolean prepare() {
+        logger.info("multiple pipe line context start to prepare...");
+        if (Objects.nonNull(processConfigs)) {
+
+        }
+        logger.info("multiple pipe line context prepare success...");
+        return true;
     }
 
     @Override
-    public boolean startUp() {
-        return false;
+    public boolean start() {
+        return true;
     }
 
     @Override
-    public boolean shutdown() {
-        return false;
+    public boolean stop() {
+        return true;
     }
 }
