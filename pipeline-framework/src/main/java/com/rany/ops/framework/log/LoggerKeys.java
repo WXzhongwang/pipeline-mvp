@@ -6,7 +6,7 @@ package com.rany.ops.framework.log;
  * @author zhongshengwang
  * @description SLS 默认keys
  * @date 2021/12/20 10:27 下午
- * @email zhongshengwang@shuwen.com
+ * @email 18668485565@163.com
  */
 
 public final class LoggerKeys {

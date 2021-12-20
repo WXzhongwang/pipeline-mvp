@@ -6,7 +6,7 @@ package com.rany.ops.framework.exception;
  * @author zhongshengwang
  * @description TODO
  * @date 2021/12/19 9:21 下午
- * @email zhongshengwang@shuwen.com
+ * @email 18668485565@163.com
  */
 
 public class ResourceException extends RuntimeException {

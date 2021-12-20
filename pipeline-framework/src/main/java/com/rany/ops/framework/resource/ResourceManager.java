@@ -11,7 +11,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author zhongshengwang
  * @description TODO
  * @date 2021/12/19 9:38 下午
- * @email zhongshengwang@shuwen.com
+ * @email 18668485565@163.com
  */
 
 public class ResourceManager {
