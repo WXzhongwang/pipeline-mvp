@@ -28,7 +28,7 @@
         "next": []
       }
     ],
-    "channel": [
+    "channels": [
       {
         "name": "name1",
         "className": "xxxxx",
@@ -42,7 +42,7 @@
         "next": []
       }
     ],
-    "sink": [
+    "sinks": [
       {
         "name": "name2",
         "className": "xxxxx",

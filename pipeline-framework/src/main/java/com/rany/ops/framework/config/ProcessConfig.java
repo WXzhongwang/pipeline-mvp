@@ -12,31 +12,31 @@ import java.util.List;
 
 public class ProcessConfig implements Serializable {
 
-    private List<ProcessorConfig> source;
-    private List<ProcessorConfig> channel;
-    private List<ProcessorConfig> sink;
+    private List<ProcessorConfig> sources;
+    private List<ProcessorConfig> channels;
+    private List<ProcessorConfig> sinks;
 
-    public List<ProcessorConfig> getSource() {
-        return source;
+    public List<ProcessorConfig> getSources() {
+        return sources;
     }
 
-    public void setSource(List<ProcessorConfig> source) {
-        this.source = source;
+    public void setSources(List<ProcessorConfig> sources) {
+        this.sources = sources;
     }
 
-    public List<ProcessorConfig> getChannel() {
-        return channel;
+    public List<ProcessorConfig> getChannels() {
+        return channels;
     }
 
-    public void setChannel(List<ProcessorConfig> channel) {
-        this.channel = channel;
+    public void setChannels(List<ProcessorConfig> channels) {
+        this.channels = channels;
     }
 
-    public List<ProcessorConfig> getSink() {
-        return sink;
+    public List<ProcessorConfig> getSinks() {
+        return sinks;
     }
 
-    public void setSink(List<ProcessorConfig> sink) {
-        this.sink = sink;
+    public void setSinks(List<ProcessorConfig> sinks) {
+        this.sinks = sinks;
     }
 }
