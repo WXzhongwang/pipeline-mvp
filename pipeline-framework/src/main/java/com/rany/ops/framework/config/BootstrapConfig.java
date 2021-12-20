@@ -34,6 +34,11 @@ public class BootstrapConfig implements Serializable {
      */
     private List<ResourceConfig> resourceConfigList;
 
+    /**
+     * 处理流程
+     */
+    private List<ProcessConfig> process;
+
     public AppConfig getApp() {
         return app;
     }
@@ -64,5 +69,13 @@ public class BootstrapConfig implements Serializable {
 
     public void setResourceConfigList(List<ResourceConfig> resourceConfigList) {
         this.resourceConfigList = resourceConfigList;
+    }
+
+    public List<ProcessConfig> getProcess() {
+        return process;
+    }
+
+    public void setProcess(List<ProcessConfig> process) {
+        this.process = process;
     }
 }

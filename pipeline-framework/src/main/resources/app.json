@@ -17,13 +17,13 @@
     "sources": [
       {
         "name": "source1",
-        "class": "xxxxx",
+        "className": "xxxxx",
         "config": {},
         "next": []
       },
       {
         "name": "source1",
-        "class": "xxxxx",
+        "className": "xxxxx",
         "config": {},
         "next": []
       }
@@ -31,18 +31,23 @@
     "channel": [
       {
         "name": "name1",
-        "class": "xxxxx",
+        "className": "xxxxx",
         "config": {},
         "next": []
       },
       {
         "name": "name2",
-        "class": "xxxxx",
+        "className": "xxxxx",
         "config": {},
         "next": []
       }
     ],
     "sink": [
+      {
+        "name": "name2",
+        "className": "xxxxx",
+        "config": {}
+      }
     ]
   }
 }

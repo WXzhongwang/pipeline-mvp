@@ -45,7 +45,7 @@ public class Bootstrap {
             }
         }
         // TODO: 串流程
-        context = new PipelineContext();
+        context = new PipelineContext(config.getProcess());
         logger.info("pipeline app [{}] admin center start success...", config.getApp().getName());
         return true;
     }

@@ -1,5 +1,6 @@
 package com.rany.ops.framework.pipeline;
 
+import com.rany.ops.framework.config.ProcessConfig;
 import com.rany.ops.framework.core.LifeCycle;
 import com.rany.ops.framework.resource.ResourceManager;
 import org.slf4j.Logger;
@@ -31,7 +32,14 @@ public class PipelineContext implements LifeCycle {
      */
     private ResourceManager resourceManager;
 
-    public PipelineContext() {
+    /**
+     * 处理流程配置
+     */
+    private List<ProcessConfig> processConfigs;
+
+    
+    public PipelineContext(List<ProcessConfig> processConfigs) {
+        this.processConfigs = processConfigs;
     }
 
     @Override
