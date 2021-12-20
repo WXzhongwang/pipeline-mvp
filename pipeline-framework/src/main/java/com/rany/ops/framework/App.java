@@ -3,8 +3,8 @@ package com.rany.ops.framework;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
 import com.alibaba.fastjson.parser.Feature;
-import com.rany.ops.framework.admin.Admin;
-import com.rany.ops.framework.config.ApplicationConfig;
+import com.rany.ops.framework.admin.Bootstrap;
+import com.rany.ops.framework.config.BootstrapConfig;
 import com.rany.ops.framework.config.ResourceConfig;
 import com.rany.ops.framework.core.constants.Constants;
 import org.apache.commons.cli.CommandLine;
@@ -19,7 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 /**
@@ -50,43 +50,43 @@ public class App {
         try {
             CommandLine line = parser.parse(options, args);
             if (line.hasOption("h")) {
-                helpFormatter.printHelp("pipeline", options, true);
+                helpFormatter.printHelp(Constants.SYSTEM_NAME, options, true);
                 System.exit(0);
             }
             String configFile = line.getOptionValue("c");
             if (StringUtils.isEmpty(configFile)) {
-                helpFormatter.printHelp("pipeline", options, true);
+                helpFormatter.printHelp(Constants.SYSTEM_NAME, options, true);
                 System.exit(0);
             }
             String resourceFile = line.getOptionValue("r");
             if (StringUtils.isEmpty(resourceFile)) {
-                helpFormatter.printHelp("pipeline", options, true);
+                helpFormatter.printHelp(Constants.SYSTEM_NAME, options, true);
                 System.exit(0);
             }
             File config = new File(configFile);
             File resource = new File(resourceFile);
-            String configContent = FileUtils.readFileToString(config, Charset.forName("UTF-8"));
-            ApplicationConfig applicationConfig = JSON.parseObject(configContent, ApplicationConfig.class);
-            String resourceContent = FileUtils.readFileToString(resource, Charset.forName("UTF-8"));
+            String configContent = FileUtils.readFileToString(config, StandardCharsets.UTF_8);
+            BootstrapConfig bootstrapConfig = JSON.parseObject(configContent, BootstrapConfig.class);
+            String resourceContent = FileUtils.readFileToString(resource, StandardCharsets.UTF_8);
             List<ResourceConfig> resourceConfigList = JSON.parseObject(resourceContent,
                     new TypeReference<List<ResourceConfig>>() {
                     });
-            applicationConfig.setResourceConfigList(resourceConfigList);
-            Admin admin = new Admin(applicationConfig);
-            String name = applicationConfig.getApp().getName();
-            if (!admin.init()) {
+            bootstrapConfig.setResourceConfigList(resourceConfigList);
+            Bootstrap bootstrap = new Bootstrap(bootstrapConfig);
+            String name = bootstrapConfig.getApp().getName();
+            if (!bootstrap.init()) {
                 logger.error("init pipeline app [{}] failed", name);
                 System.exit(1);
             }
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 logger.info("shutdown hook thread is running");
-                if (!admin.shutdown()) {
+                if (!bootstrap.shutdown()) {
                     logger.error("stop pipeline app scheduler[{}] failed", name);
                 }
-                admin.shutdown();
+                bootstrap.shutdown();
                 activate();
             }));
-            if (!admin.startUp()) {
+            if (!bootstrap.startUp()) {
                 logger.error("start pipeline app[{}] failed", name);
                 System.exit(1);
             }

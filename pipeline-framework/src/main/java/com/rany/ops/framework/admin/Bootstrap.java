@@ -1,27 +1,27 @@
 package com.rany.ops.framework.admin;
 
-import com.rany.ops.framework.config.ApplicationConfig;
+import com.rany.ops.framework.config.BootstrapConfig;
 import com.rany.ops.framework.config.ResourceConfig;
 import com.rany.ops.framework.resource.ResourceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * 启动引导
+ *
  * @author zhongshengwang
- * @description TODO
+ * @description 启动引导
  * @date 2021/12/19 8:16 下午
  * @email 18668485565@163.com
  */
 
-public class Admin {
+public class Bootstrap {
 
-    private static final Logger logger = LoggerFactory.getLogger(Admin.class);
+    private static final Logger logger = LoggerFactory.getLogger(Bootstrap.class);
 
-    private ApplicationConfig config;
+    private BootstrapConfig config;
 
-    private ResourceManager resManager;
-
-    public Admin(ApplicationConfig config) {
+    public Bootstrap(BootstrapConfig config) {
         this.config = config;
     }
 
@@ -41,7 +41,8 @@ public class Admin {
                 return false;
             }
         }
-        // TODO 串流程
+        // TODO: 串流程
+
         logger.info("pipeline app [{}] admin center start success...", config.getApp().getName());
         return true;
     }

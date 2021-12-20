@@ -12,7 +12,7 @@ import java.util.List;
  * @email 18668485565@163.com
  */
 
-public class ApplicationConfig implements Serializable {
+public class BootstrapConfig implements Serializable {
 
     /**
      * 应用基础配置
