@@ -1,8 +1,12 @@
 package com.rany.ops.framework.pipeline;
 
+import com.rany.ops.framework.core.LifeCycle;
 import com.rany.ops.framework.resource.ResourceManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * pipeline管理
@@ -13,7 +17,9 @@ import java.util.List;
  * @email 18668485565@163.com
  */
 
-public class PipelineContext {
+public class PipelineContext implements LifeCycle {
+
+    private static final Logger logger = LoggerFactory.getLogger(PipelineContext.class);
 
     /**
      * 支持多渠道并行
@@ -26,7 +32,20 @@ public class PipelineContext {
     private ResourceManager resourceManager;
 
     public PipelineContext() {
-
     }
 
+    @Override
+    public boolean init(Map<String, Object> config) {
+        return false;
+    }
+
+    @Override
+    public boolean startUp() {
+        return false;
+    }
+
+    @Override
+    public boolean shutdown() {
+        return false;
+    }
 }

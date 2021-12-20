@@ -2,6 +2,7 @@ package com.rany.ops.framework.admin;
 
 import com.rany.ops.framework.config.BootstrapConfig;
 import com.rany.ops.framework.config.ResourceConfig;
+import com.rany.ops.framework.pipeline.PipelineContext;
 import com.rany.ops.framework.resource.ResourceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,8 @@ public class Bootstrap {
     private static final Logger logger = LoggerFactory.getLogger(Bootstrap.class);
 
     private BootstrapConfig config;
+
+    private PipelineContext context;
 
     public Bootstrap(BootstrapConfig config) {
         this.config = config;
@@ -42,7 +45,7 @@ public class Bootstrap {
             }
         }
         // TODO: 串流程
-
+        context = new PipelineContext();
         logger.info("pipeline app [{}] admin center start success...", config.getApp().getName());
         return true;
     }
