@@ -37,6 +37,13 @@ public interface Component<T> extends LifeCycle {
 
 
     /**
+     * 添加下游节点
+     *
+     * @param next
+     */
+    void addNext(Component next);
+
+    /**
      * 设置前置节点
      *
      * @param prev

@@ -1,0 +1,48 @@
+{
+  "app": {
+    "name": "pipe-first-demo",
+    "emergency": "zhongshengwang"
+  },
+  "sls": {
+    "enable": true,
+    "loggerKeys": []
+  },
+  "monitor": {
+    "enable": "true",
+    "dingTalkUrl": "",
+    "dingTalkSecret": "",
+    "alertName": "pipeline告警"
+  },
+  "process": {
+    "sources": [
+      {
+        "name": "source1",
+        "class": "xxxxx",
+        "config": {},
+        "next": []
+      },
+      {
+        "name": "source1",
+        "class": "xxxxx",
+        "config": {},
+        "next": []
+      }
+    ],
+    "channel": [
+      {
+        "name": "name1",
+        "class": "xxxxx",
+        "config": {},
+        "next": []
+      },
+      {
+        "name": "name2",
+        "class": "xxxxx",
+        "config": {},
+        "next": []
+      }
+    ],
+    "sink": [
+    ]
+  }
+}

@@ -62,6 +62,12 @@ public abstract class AbstractComponent<T, R> implements Component<T> {
         logger.info("[{}] execute success......", this.getName());
     }
 
+
+    @Override
+    public void addNext(Component next) {
+        next.addNext(next);
+    }
+
     /**
      * 具体组件执行处理
      *
