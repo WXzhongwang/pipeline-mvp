@@ -34,18 +34,16 @@ public class PipelineContext implements IPipelineLifeCycle {
     /**
      * 处理流程配置
      */
-    private List<ProcessConfig> processConfigs;
+    private ProcessConfig process;
 
-
-    public PipelineContext(List<ProcessConfig> processConfigs) {
-        this.processConfigs = processConfigs;
+    public PipelineContext(ProcessConfig process) {
+        this.process = process;
     }
-
 
     @Override
     public boolean prepare() {
         logger.info("multiple pipe line context start to prepare...");
-        if (Objects.nonNull(processConfigs)) {
+        if (Objects.nonNull(process)) {
 
         }
         logger.info("multiple pipe line context prepare success...");
