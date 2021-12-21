@@ -1,13 +1,10 @@
 package com.rany.ops.framework.pipeline;
 
 import com.rany.ops.framework.config.ProcessConfig;
-import com.rany.ops.framework.resource.ResourceManager;
-import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
-import java.util.Objects;
 
 /**
  * pipeline管理
@@ -28,39 +25,49 @@ public class PipelineContext implements IPipelineLifeCycle {
     private List<Pipeline> pipelines;
 
     /**
-     * 资源管理
-     */
-    private ResourceManager resourceManager;
-
-    /**
      * 处理流程配置
      */
     private ProcessConfig process;
 
+    private ProcessManager processManager;
+
     public PipelineContext(ProcessConfig process) {
         this.process = process;
+
     }
 
     @Override
     public boolean prepare() {
         logger.info("multiple pipe line context start to prepare...");
-        if (Objects.nonNull(process)) {
-            if (CollectionUtils.isEmpty(process.getSources())) {
-                logger.warn("no source configured");
-                return false;
-            }
+        processManager = new ProcessManager();
+        if (!processManager.init(process)) {
+            logger.info("process manager init failed...");
+            return false;
         }
+        pipelines = processManager.buildChain();
         logger.info("multiple pipe line context prepare success...");
         return true;
     }
 
     @Override
     public boolean start() {
+        for (Pipeline pipeline : pipelines) {
+            if (!pipeline.start()) {
+                logger.error("source [{}] start failed...", pipeline.source.getName());
+                return false;
+            }
+        }
         return true;
     }
 
     @Override
     public boolean stop() {
+        for (Pipeline pipeline : pipelines) {
+            if (!pipeline.stop()) {
+                logger.error("source [{}] stop failed...", pipeline.source.getName());
+                return false;
+            }
+        }
         return true;
     }
 }

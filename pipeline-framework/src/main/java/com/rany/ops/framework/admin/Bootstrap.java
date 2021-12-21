@@ -44,8 +44,12 @@ public class Bootstrap {
                 return false;
             }
         }
-        // TODO: 串流程
+        // 串流程
         context = new PipelineContext(config.getProcess());
+        if (!context.prepare()) {
+            logger.info("context prepare failed...");
+            return false;
+        }
         logger.info("pipeline app [{}] admin center start success...", config.getApp().getName());
         return true;
     }

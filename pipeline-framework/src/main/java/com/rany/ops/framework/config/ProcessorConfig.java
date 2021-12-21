@@ -1,8 +1,10 @@
 package com.rany.ops.framework.config;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.Serializable;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author zhongshengwang
@@ -16,7 +18,7 @@ public class ProcessorConfig implements Serializable {
     private String name;
     private String className;
     private Map<String, Object> config;
-    private List<String> next;
+    private Set<String> next;
 
     public String getName() {
         return name;
@@ -42,11 +44,15 @@ public class ProcessorConfig implements Serializable {
         this.config = config;
     }
 
-    public List<String> getNext() {
+    public Set<String> getNext() {
         return next;
     }
 
-    public void setNext(List<String> next) {
+    public void setNext(Set<String> next) {
         this.next = next;
+    }
+
+    public boolean validate() {
+        return !StringUtils.isEmpty(name) && !StringUtils.isEmpty(className);
     }
 }

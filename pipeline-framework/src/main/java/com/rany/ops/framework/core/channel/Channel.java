@@ -3,6 +3,8 @@ package com.rany.ops.framework.core.channel;
 
 import com.rany.ops.framework.kv.KvRecord;
 
+import java.util.Set;
+
 /**
  * @author zhongshengwang
  * @description TODO
@@ -14,5 +16,15 @@ public abstract class Channel extends AbstractChannel<KvRecord, KvRecord> {
 
     protected Channel(String name) {
         super(name);
+    }
+
+    protected Set<String> nextProcessors;
+
+    public Set<String> getNextProcessors() {
+        return nextProcessors;
+    }
+
+    public void setNextProcessors(Set<String> nextProcessors) {
+        this.nextProcessors = nextProcessors;
     }
 }
