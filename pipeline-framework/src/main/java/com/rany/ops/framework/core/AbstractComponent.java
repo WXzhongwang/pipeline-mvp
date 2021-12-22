@@ -65,7 +65,7 @@ public abstract class AbstractComponent<T, R> implements Component<T> {
 
     @Override
     public void addNext(Component next) {
-        next.addNext(next);
+        this.next.add(next);
     }
 
     /**

@@ -16,38 +16,25 @@
   "process": {
     "sources": [
       {
-        "name": "source1",
-        "className": "xxxxx",
-        "config": {},
-        "next": []
-      },
-      {
-        "name": "source1",
-        "className": "xxxxx",
-        "config": {},
-        "next": []
+        "name": "fake_source",
+        "className": "com.rany.ops.framework.core.source.FakeSource",
+        "config": {
+          "timeIntervalMs": 3000
+        },
+        "next": [
+          "fake_channel"
+        ]
       }
     ],
     "channels": [
       {
-        "name": "name1",
-        "className": "xxxxx",
-        "config": {},
-        "next": []
-      },
-      {
-        "name": "name2",
-        "className": "xxxxx",
+        "name": "fake_channel",
+        "className": "com.rany.ops.framework.core.channel.DummyChannel",
         "config": {},
         "next": []
       }
     ],
     "sinks": [
-      {
-        "name": "name2",
-        "className": "xxxxx",
-        "config": {}
-      }
     ]
   }
 }

@@ -1,6 +1,5 @@
-package com.rany.ops.plugin.source;
+package com.rany.ops.framework.core.source;
 
-import com.rany.ops.framework.core.source.Source;
 import com.rany.ops.framework.kv.KvRecord;
 import com.rany.ops.framework.kv.KvRecords;
 
@@ -8,6 +7,7 @@ import java.util.Map;
 
 /**
  * Fake Source
+ *
  * @author zhongshengwang
  * @description Fake Source
  * @date 2021/12/18 9:11 下午

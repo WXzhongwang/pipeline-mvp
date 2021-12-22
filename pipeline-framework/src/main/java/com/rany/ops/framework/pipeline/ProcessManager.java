@@ -73,7 +73,7 @@ public class ProcessManager {
     private boolean initSink(List<ProcessorConfig> sinks) {
         for (ProcessorConfig sinkConfig : sinks) {
             String sinkName = sinkConfig.getName();
-            if (sinkConfig.validate()) {
+            if (!sinkConfig.validate()) {
                 logger.error("sink [{}] validate failed", sinkName);
                 return false;
             }
@@ -108,7 +108,7 @@ public class ProcessManager {
     private boolean initChannel(List<ProcessorConfig> channels) {
         for (ProcessorConfig channelConfig : channels) {
             String channelName = channelConfig.getName();
-            if (channelConfig.validate()) {
+            if (!channelConfig.validate()) {
                 logger.error("channel [{}] validate failed", channelName);
                 return false;
             }
@@ -135,7 +135,7 @@ public class ProcessManager {
             channel.setNextProcessors(channelConfig.getNext());
 
             // TODO: resource inject
-            
+
             channelMap.put(channelName, channel);
             logger.info("channel [{}] has finished init", channelName);
         }
@@ -145,7 +145,7 @@ public class ProcessManager {
     private boolean initSource(List<ProcessorConfig> sources) {
         for (ProcessorConfig sourceConfig : sources) {
             String sourceName = sourceConfig.getName();
-            if (sourceConfig.validate()) {
+            if (!sourceConfig.validate()) {
                 logger.error("source [{}] validate failed", sourceName);
                 return false;
             }

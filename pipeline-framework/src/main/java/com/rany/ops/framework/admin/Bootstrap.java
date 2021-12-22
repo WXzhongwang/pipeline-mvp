@@ -55,11 +55,11 @@ public class Bootstrap {
     }
 
     public boolean startUp() {
-        return true;
+        return context.start();
     }
 
     public boolean shutdown() {
-        return true;
+        return context.stop();
     }
 
 }

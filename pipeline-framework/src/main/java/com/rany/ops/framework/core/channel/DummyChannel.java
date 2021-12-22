@@ -1,6 +1,5 @@
-package com.rany.ops.plugin.channel;
+package com.rany.ops.framework.core.channel;
 
-import com.rany.ops.framework.core.channel.Channel;
 import com.rany.ops.framework.kv.KvRecord;
 
 import java.util.Map;
@@ -8,6 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 /**
  * 计数 channel
+ *
  * @author zhongshengwang
  * @description TODO
  * @date 2021/12/18 9:43 下午

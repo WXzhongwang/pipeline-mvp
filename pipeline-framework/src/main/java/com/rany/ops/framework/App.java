@@ -43,13 +43,13 @@ public class App {
         JSON.DEFAULT_PARSER_FEATURE &= ~Feature.UseBigDecimal.getMask();
         Options options = new Options();
         options.addOption(Option.builder("h").longOpt("help").desc("help information for program pipeline app").build());
-        options.addOption(Option.builder("c").longOpt("config").desc("config file path for program, required param").build());
-        options.addOption(Option.builder("r").longOpt("res").desc("res file path for program, required param").build());
+        options.addOption(Option.builder("c").longOpt("config").hasArg().desc("config file path for program, required param").build());
+        options.addOption(Option.builder("r").longOpt("res").hasArg().desc("resource file path for program, required param").build());
         CommandLineParser parser = new DefaultParser();
         HelpFormatter helpFormatter = new HelpFormatter();
         try {
             CommandLine line = parser.parse(options, args);
-            if (line.hasOption("h")) {
+            if (line.hasOption("h") || !line.hasOption("c")) {
                 helpFormatter.printHelp(Constants.SYSTEM_NAME, options, true);
                 System.exit(0);
             }
