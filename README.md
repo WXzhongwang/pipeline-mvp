@@ -10,6 +10,9 @@
 流程说明：
 ![image](https://user-images.githubusercontent.com/27359059/147108654-5965f699-338d-44cc-b1b5-a8d6899d7550.png)
 
+flume流程：
+![image](https://user-images.githubusercontent.com/27359059/147108997-5030466a-f465-465a-b67c-c3f1f6afa24d.png)
+
 ## 依赖
 
 ```
