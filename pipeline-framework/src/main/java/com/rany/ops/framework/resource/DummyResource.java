@@ -7,7 +7,7 @@ import java.util.concurrent.atomic.AtomicLong;
  * @author zhongshengwang
  * @description TODO
  * @date 2021/12/22 8:44 下午
- * @email zhongshengwang@shuwen.com
+ * @email 18668485565@163.com
  */
 
 public class DummyResource extends Resource<AtomicLong> {
@@ -25,6 +25,6 @@ public class DummyResource extends Resource<AtomicLong> {
 
     @Override
     public void destroy() {
-        
+
     }
 }
