@@ -15,7 +15,11 @@ public final class LoggerKeys {
 
     public static final String SLS_LOGGER_TIME = "sls_logger_time";
     public static final String SLS_PROCESS_TIME_MS = "sls_process_time_ms";
+    /**
+     * 开始处理时间
+     */
     public static final String SLS_START_PROCESS_TIME_MS = "sls_start_process_time_ms";
+    public static final String SLS_CURRENT_PROCESS_TIME_MS = "sls_current_process_time_ms";
     public static final String SLS_PROCESS_PLUGINS = "sls_process_plugins";
     public static final String SLS_PLUGIN_TIMES = "sls_plugin_times";
     public static final String SLS_FILTER_PLUGIN = "sls_filter_plugin";

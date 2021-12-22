@@ -36,7 +36,7 @@ public class FakeSource extends Source {
 
     @Override
     public boolean start() {
-        logger.info("start to start fake source...");
+        logger.info("start fake source...");
         thread = new Thread(this::run, "face source thread");
         thread.start();
         logger.info("start fake source success...");

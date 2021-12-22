@@ -132,6 +132,14 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
             </dependency>
+
+            <!--            <dependency>-->
+            <!--                <groupId>net.logstash.logback</groupId>-->
+            <!--                <artifactId>logstash-logback-encoder</artifactId>-->
+            <!--                <version>6.5</version>-->
+            <!--            </dependency>-->
+
+
             <dependency>
                 <groupId>commons-collections</groupId>
                 <artifactId>commons-collections</artifactId>

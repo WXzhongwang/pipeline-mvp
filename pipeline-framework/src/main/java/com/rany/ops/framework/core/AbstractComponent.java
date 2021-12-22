@@ -23,7 +23,7 @@ public abstract class AbstractComponent<T, R> implements Component<T> {
 
     private volatile Component prev;
 
-    private volatile String name;
+    protected volatile String name;
 
     @Override
     public String getName() {

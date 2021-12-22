@@ -22,7 +22,7 @@
         <!--滚动策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>${LOG_INFO_HOME}//%d.log</fileNamePattern>
+            <fileNamePattern>${LOG_INFO_HOME}//info-%d.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
@@ -36,7 +36,7 @@
         <!--滚动策略-->
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--路径-->
-            <fileNamePattern>${LOG_SLS_HOME}//%d.log</fileNamePattern>
+            <fileNamePattern>${LOG_ERROR_HOME}//error-%d.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
@@ -46,12 +46,22 @@
         </filter>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <!--日志文件输出的文件名-->
-            <FileNamePattern>${LOG_ERROR_HOME}/sls%d.log</FileNamePattern>
+            <FileNamePattern>${LOG_SLS_HOME}//sls-%d.log</FileNamePattern>
             <!--日志文件保留天数-->
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
-        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <pattern>%msg%n</pattern>
+        <!--        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
+        <!--            <providers class="net.logstash.logback.composite.loggingevent.LoggingEventJsonProviders">-->
+        <!--                <pattern>-->
+        <!--                    <pattern>-->
+        <!--                        %m%n-->
+        <!--                    </pattern>-->
+        <!--                </pattern>-->
+        <!--            </providers>-->
+        <!--            <charset>UTF-8</charset>-->
+        <!--        </encoder>-->
+        <encoder>
+            <pattern>%m%n</pattern>
         </encoder>
         <!--日志文件最大的大小-->
         <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
