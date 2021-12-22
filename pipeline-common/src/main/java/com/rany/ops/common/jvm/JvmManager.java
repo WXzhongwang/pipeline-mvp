@@ -3,7 +3,7 @@ package com.rany.ops.common.jvm;
 /**
  * JVM管理器
  *
- * @author zhongshengwang
+ * @author dick
  * @date 2020-05-13 21:58:28
  */
 public class JvmManager {

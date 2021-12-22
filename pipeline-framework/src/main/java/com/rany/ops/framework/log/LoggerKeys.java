@@ -3,7 +3,7 @@ package com.rany.ops.framework.log;
 /**
  * SLS 默认keys
  *
- * @author zhongshengwang
+ * @author dick
  * @description SLS 默认keys
  * @date 2021/12/20 10:27 下午
  * @email 18668485565@163.com

@@ -5,7 +5,7 @@ import java.util.Collection;
 /**
  * 组件接口
  *
- * @author zhongshengwang
+ * @author dick
  * @description 组件接口
  * @date 2021/12/16 10:30 上午
  * @email 18668485565@163.com

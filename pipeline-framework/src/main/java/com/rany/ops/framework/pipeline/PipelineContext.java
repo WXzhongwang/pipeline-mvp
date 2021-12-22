@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * pipeline管理
  *
- * @author zhongshengwang
+ * @author dick
  * @description TODO
  * @date 2021/12/20 10:52 下午
  * @email 18668485565@163.com

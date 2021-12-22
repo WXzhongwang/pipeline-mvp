@@ -10,7 +10,8 @@ import java.util.List;
 /**
  * 流程数据抽象
  * 封装KVRecord列表
- * @author zhongshengwang
+ *
+ * @author dick
  */
 public class KvRecords implements Serializable {
 

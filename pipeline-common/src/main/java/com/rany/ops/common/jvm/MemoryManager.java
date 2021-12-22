@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 /**
  * JVM Memory Monitor
  *
- * @author zhongshengwang
+ * @author dick
  * @date 2020-08-03 16:27:05
  */
 public class MemoryManager {

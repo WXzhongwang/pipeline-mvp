@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * TableStore config
- * @author zhongshengwang
+ * @author dick
  * @description TableStore
  * @date 2021/12/17 10:31 下午
  * @email 18668485565@163.com

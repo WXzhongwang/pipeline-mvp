@@ -258,7 +258,7 @@ usage: pipeline [-c] [-h] [-r]
 启动参数:
 
 ```
--c="/Users/zhongshengwang/workspace/mine/pipeline-mvp/pipeline-framework/src/main/resources/app.json" -r="/Users/zhongshengwang/workspace/mine/pipeline-mvp/pipeline-framework/src/main/resources/resource.json"
+-c="/Users/dick/workspace/mine/pipeline-mvp/pipeline-framework/src/main/resources/app.json" -r="/Users/dick/workspace/mine/pipeline-mvp/pipeline-framework/src/main/resources/resource.json"
 ```
 
 VM options:

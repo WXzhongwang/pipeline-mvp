@@ -12,7 +12,7 @@ import java.util.List;
 
 /**
  * dubbo 客户端泛化调用
- * @author zhongshengwang
+ * @author dick
  * @description TODO
  * @date 2021/12/17 9:02 下午
  * @email 18668485565@163.com

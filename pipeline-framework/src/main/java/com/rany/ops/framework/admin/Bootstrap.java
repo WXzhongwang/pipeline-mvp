@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 启动引导
  *
- * @author zhongshengwang
+ * @author dick
  * @description 启动引导
  * @date 2021/12/19 8:16 下午
  * @email 18668485565@163.com

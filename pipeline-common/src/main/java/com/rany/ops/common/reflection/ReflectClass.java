@@ -12,7 +12,7 @@ import java.util.Map;
 /**
  * ReflectClass
  *
- * @author zhongshengwang
+ * @author dick
  * @description ReflectClass
  * @date 2021/12/17 10:09 下午
  * @email 18668485565@163.com

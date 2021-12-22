@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 告警配置
  *
- * @author zhongshengwang
+ * @author dick
  * @description TODO
  * @date 2021/12/19 8:26 下午
  * @email 18668485565@163.com

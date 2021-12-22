@@ -14,7 +14,7 @@ import org.slf4j.LoggerFactory;
 /**
  * 资源工厂
  *
- * @author zhongshengwang
+ * @author dick
  * @description 资源工厂
  * @date 2021/12/19 8:54 下午
  * @email 18668485565@163.com

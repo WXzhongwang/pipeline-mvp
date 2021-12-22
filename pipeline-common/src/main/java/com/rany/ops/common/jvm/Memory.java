@@ -3,7 +3,7 @@ package com.rany.ops.common.jvm;
 /**
  * 内存统计
  *
- * @author zhongshengwang
+ * @author dick
  * @date 2020-05-13 21:54:48
  */
 public class Memory {

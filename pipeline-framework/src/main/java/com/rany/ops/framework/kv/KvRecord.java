@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * 数据抽象, 用于pipeline中数据扭转
  *
- * @author zhongshengwang
+ * @author dick
  * @description TODO
  * @date 2021/12/17 8:23 下午
  * @email 18668485565@163.com

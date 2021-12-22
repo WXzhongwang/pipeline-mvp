@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * 资源抽象
  *
- * @author zhongshengwang
+ * @author dick
  * @description TODO
  * @date 2021/12/19 8:54 下午
  * @email 18668485565@163.com

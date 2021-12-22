@@ -7,7 +7,7 @@ import java.util.Map;
 /**
  * 资源配置
  *
- * @author zhongshengwang
+ * @author dick
  * @description 资源配置
  * @date 2021/12/19 8:38 下午
  * @email 18668485565@163.com

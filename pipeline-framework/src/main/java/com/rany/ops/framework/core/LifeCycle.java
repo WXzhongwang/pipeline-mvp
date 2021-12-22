@@ -5,7 +5,7 @@ import java.util.Map;
 /**
  * 组件生命周期
  *
- * @author zhongshengwang
+ * @author dick
  * @description 组件生命周期
  * @date 2021/12/16 10:24 上午
  * @email 18668485565@163.com

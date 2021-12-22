@@ -25,7 +25,7 @@ import java.util.List;
 /**
  * 应用程序框架入口
  *
- * @author zhongshengwang
+ * @author dick
  * @description 应用程序框架入口
  * @date 2021/12/17 10:42 下午
  * @email 18668485565@163.com

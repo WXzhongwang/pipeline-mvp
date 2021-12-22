@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * dubbo 服务端配置
- * @author zhongshengwang
+ * @author dick
  * @description 服务端配置
  * @date 2021/12/17 8:59 下午
  * @email 18668485565@163.com

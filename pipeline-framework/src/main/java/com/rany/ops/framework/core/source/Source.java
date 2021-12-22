@@ -7,7 +7,7 @@ import com.rany.ops.framework.log.LoggerKeys;
 /**
  * 抽象Source
  *
- * @author zhongshengwang
+ * @author dick
  * @description 抽象Source
  * @date 2021/12/17 8:26 下午
  * @email 18668485565@163.com

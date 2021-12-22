@@ -1,7 +1,7 @@
 package com.rany.ops.common.jvm;
 
 /**
- * @author zhongshengwang
+ * @author dick
  * @date 2020-08-03 16:38:00
  */
 public class MemoryManagerConfig {

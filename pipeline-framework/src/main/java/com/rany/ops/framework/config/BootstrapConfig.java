@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 应用程序配置
  *
- * @author zhongshengwang
+ * @author dick
  * @description 应用程序配置
  * @date 2021/12/18 9:56 下午
  * @email 18668485565@163.com

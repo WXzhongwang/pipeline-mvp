@@ -10,7 +10,7 @@ import java.util.Collection;
 /**
  * 组件抽象
  *
- * @author zhongshengwang
+ * @author dick
  * @description 组件抽象
  * @date 2021/12/16 10:33 上午
  * @email 18668485565@163.com

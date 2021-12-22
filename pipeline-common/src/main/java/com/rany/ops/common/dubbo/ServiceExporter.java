@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * 服务端注册
- * @author zhongshengwang
+ * @author dick
  * @description TODO
  * @date 2021/12/17 10:00 下午
  * @email 18668485565@163.com

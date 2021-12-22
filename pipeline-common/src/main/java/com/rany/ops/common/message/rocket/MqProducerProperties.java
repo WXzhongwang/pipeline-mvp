@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * RocketMQ producer
- * @author zhongshengwang
+ * @author dick
  * @description RocketMQ producer
  * @date 2021/12/17 10:14 下午
  * @email 18668485565@163.com

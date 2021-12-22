@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 /**
  * dubbo客户端配置
- * @author zhongshengwang
+ * @author dick
  * @description dubbo客户端配置
  * @date 2021/12/17 8:55 下午
  * @email 18668485565@163.com

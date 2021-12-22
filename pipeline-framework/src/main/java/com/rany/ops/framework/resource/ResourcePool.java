@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  * 资源池：负责管理资源对象，负责资源的实例化数量控制和生命周期管理
  * 建议资源池管理对象为线程安全
  *
- * @author zhongshengwang
+ * @author dick
  * @description 资源工厂
  * @date 2021/12/19 8:54 下午
  * @email 18668485565@163.com

@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 /**
  * pipeline 抽象
  *
- * @author zhongshengwang
+ * @author dick
  * @description pipeline
  * @date 2021/12/16 11:10 上午
  * @email 18668485565@163.com
@@ -22,7 +22,7 @@ public abstract class Pipeline implements IPipelineLifeCycle {
     Pipeline(Source source) {
         this.source = source;
     }
-    
+
     @Override
     public boolean prepare() {
         return true;

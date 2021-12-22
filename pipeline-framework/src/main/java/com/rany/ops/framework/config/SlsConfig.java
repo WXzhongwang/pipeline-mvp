@@ -6,7 +6,8 @@ import java.util.List;
 
 /**
  * 日志配置
- * @author zhongshengwang
+ *
+ * @author dick
  * @description 日志配置
  * @date 2021/12/18 10:01 下午
  * @email 18668485565@163.com

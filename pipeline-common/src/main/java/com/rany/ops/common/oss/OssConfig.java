@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * OSS config
- * @author zhongshengwang
+ * @author dick
  * @description OSS config
  * @date 2021/12/17 10:09 下午
  * @email 18668485565@163.com
