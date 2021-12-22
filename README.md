@@ -5,6 +5,11 @@
 3. 业务、框架分离
 4. 统一资源管理
 
+
+## 流程概要图
+流程说明：
+![image](https://user-images.githubusercontent.com/27359059/147108654-5965f699-338d-44cc-b1b5-a8d6899d7550.png)
+
 ## 依赖
 
 ```
@@ -238,4 +243,6 @@ VM options:
 ```
 -Dlogging.config=logback.xml 
 ```
+
+
 
