@@ -51,6 +51,10 @@ public class PipelineContext implements IPipelineLifeCycle {
 
     @Override
     public boolean start() {
+        if (null == pipelines || pipelines.isEmpty()) {
+            logger.error("no pipeline...");
+            return false;
+        }
         for (Pipeline pipeline : pipelines) {
             if (!pipeline.start()) {
                 logger.error("source [{}] start failed...", pipeline.source.getName());
