@@ -1,21 +1,35 @@
 # 流式数据处理框架
 
+## 特性
+
 1. 仿照flume、netty等框架的设计思路
-2. 快速开发框架
-3. 业务、框架分离
-4. 统一资源管理
+2. 快速开发框架，启动快速
+3. 业务、框架关注点分离
+4. 统一资源管理，采用池化思想
+5. 插件关注分离可拓展
+6. 提供框架级别的日志采集，完成Metric分析
+7. 内置告警机制（可通过dingtalk告警配置）
 
 ## 架构
 
 ![image](https://user-images.githubusercontent.com/27359059/147110143-5fa42019-ecb8-40ce-a3df-8ea25d00ab09.png)
 
-
 ## 流程概要图
+
 流程说明：
 ![image](https://user-images.githubusercontent.com/27359059/147108654-5965f699-338d-44cc-b1b5-a8d6899d7550.png)
 
-flume流程：
+参考类似flume流程及一些概念，融入自己的思考：
 ![image](https://user-images.githubusercontent.com/27359059/147108997-5030466a-f465-465a-b67c-c3f1f6afa24d.png)
+
+```
+公共层
+<module>pipeline-common</module>
+框架层
+<module>pipeline-framework</module>
+插件层（囊括基础的source,channel,sink），可按需定制
+<module>pipeline-plugin</module>
+```
 
 ## 依赖
 
