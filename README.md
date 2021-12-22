@@ -22,6 +22,8 @@
 参考类似flume流程及一些概念，融入自己的思考：
 ![image](https://user-images.githubusercontent.com/27359059/147108997-5030466a-f465-465a-b67c-c3f1f6afa24d.png)
 
+## 模块简要介绍
+
 ```
 公共层
 <module>pipeline-common</module>
