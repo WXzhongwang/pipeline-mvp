@@ -5,6 +5,10 @@
 3. 业务、框架分离
 4. 统一资源管理
 
+## 架构
+
+![image](https://user-images.githubusercontent.com/27359059/147110143-5fa42019-ecb8-40ce-a3df-8ea25d00ab09.png)
+
 
 ## 流程概要图
 流程说明：
