@@ -1,5 +1,8 @@
 package com.rany.ops.framework.kv;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+import com.rany.ops.common.json.CopyUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +15,7 @@ import java.util.Map;
 
 /**
  * 数据抽象, 用于pipeline中数据扭转
+ *
  * @author zhongshengwang
  * @description TODO
  * @date 2021/12/17 8:23 下午
@@ -93,6 +97,33 @@ public class KvRecord implements Serializable {
 
     public List<String> keys() {
         return new ArrayList<>(fieldMap.keySet());
+    }
+
+    public void copyFrom(KvRecord other) {
+        for (String key : other.fieldMap.keySet()) {
+            fieldMap.put(key, other.fieldMap.get(key));
+        }
+    }
+
+    /**
+     * 复制克隆
+     * 浅拷贝 针对JSONObject和JSONArray做深拷贝
+     *
+     * @return 复制KVRecord
+     */
+    public KvRecord copy() {
+        KvRecord replica = new KvRecord();
+        for (Map.Entry<String, Object> entry : fieldMap.entrySet()) {
+            Object value = entry.getValue();
+            if (value instanceof JSONObject) {
+                replica.put(entry.getKey(), CopyUtils.deepCopy((JSONObject) value));
+            } else if (value instanceof JSONArray) {
+                replica.put(entry.getKey(), CopyUtils.deepCopy((JSONArray) value));
+            } else {
+                replica.put(entry.getKey(), value);
+            }
+        }
+        return replica;
     }
 
     @Override
