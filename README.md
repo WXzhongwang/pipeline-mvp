@@ -1,5 +1,25 @@
 # 流式数据处理框架
 
+## 目标
+
+通过提供初始输入并传递处理后的输出以供下一阶段使用，从而允许在一系列阶段中进行数据处理。 Pipeline模式为管道模式，也称为流水线模式。 通过预先设定好的一系列的阶段来处理输入的数据，每个阶段的输出即是下一个阶段的输入。 模型图如下：
+
+![image](https://user-images.githubusercontent.com/27359059/147108654-5965f699-338d-44cc-b1b5-a8d6899d7550.png)
+
+Flume:
+
+![image](https://user-images.githubusercontent.com/27359059/147108997-5030466a-f465-465a-b67c-c3f1f6afa24d.png)
+
+从图中可以看出，整个流水线内数据流转是从上游到下游，上游的输出是下游的输入，按阶段依次执行。
+
+- Source: 表示数据来源，比如：KafkaSource。
+- Channel：表示对数据进行处理的组件，比如：JsonChannel，对数据进行json转换和处理。
+- Sink：表示数据落地或下沉的地方，比如：KafkaSink，表示数据发送到指定的kafka；DbSInk表示数据落地到DB。
+
+可以看出，Pipeline是由Source（必须有），Channel（不一定需要），Sink（必须有）三种类型的组件自由组合而成的。
+
+> 后续考虑到，在某些特定场景下，数据可能并不一定会有有个特定的下沉，同时在每个channel中， 我们可以做的事情更多， 所以在实现的版本中，并没有要求一定需要在pipeline的最后需要接入一个sink,channel也可以不需要结束
+
 ## 特性
 
 1. 仿照flume、netty等框架的设计思路
@@ -13,14 +33,6 @@
 ## 架构
 
 ![image](https://user-images.githubusercontent.com/27359059/147110143-5fa42019-ecb8-40ce-a3df-8ea25d00ab09.png)
-
-## 流程概要图
-
-流程说明：
-![image](https://user-images.githubusercontent.com/27359059/147108654-5965f699-338d-44cc-b1b5-a8d6899d7550.png)
-
-参考类似flume流程及一些概念，融入自己的思考：
-![image](https://user-images.githubusercontent.com/27359059/147108997-5030466a-f465-465a-b67c-c3f1f6afa24d.png)
 
 ## 模块简要介绍
 
