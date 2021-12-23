@@ -42,6 +42,9 @@
         <guava-retry.version>2.0.0</guava-retry.version>
         <reflections.version>0.9.12</reflections.version>
         <jmh.version>1.32</jmh.version>
+
+
+        <ons.client.version>1.8.0.Final</ons.client.version>
     </properties>
 
     <dependencyManagement>
@@ -190,6 +193,15 @@
                 <artifactId>curator-recipes</artifactId>
                 <version>${curator.version}</version>
             </dependency>
+
+
+            <!--RocketMQ-->
+            <dependency>
+                <groupId>com.aliyun.openservices</groupId>
+                <artifactId>ons-client</artifactId>
+                <version>${ons.client.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 

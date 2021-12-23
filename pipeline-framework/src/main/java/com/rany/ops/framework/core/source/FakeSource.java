@@ -51,7 +51,7 @@ public class FakeSource extends Source {
     }
 
     @Override
-    public boolean shutdown() {
+    public boolean stop() {
         logger.info("fake source is stopping ...");
         running = false;
         if (thread != null) {
@@ -64,7 +64,7 @@ public class FakeSource extends Source {
                 logger.error(e.getMessage(), e);
             }
         }
-        return super.shutdown();
+        return super.stop();
     }
 
     private void run() {

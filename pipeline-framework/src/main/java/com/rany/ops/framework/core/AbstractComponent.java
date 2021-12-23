@@ -96,12 +96,12 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
      * @return
      */
     @Override
-    public boolean startUp() {
+    public boolean start() {
         // 下游 -> 上游 依次启动
         logger.info("[{}] is ready to start......", this.getName());
         Collection<Component> downStreams = getNext();
         if (!CollectionUtils.isEmpty(downStreams)) {
-            downStreams.forEach(Component::startUp);
+            downStreams.forEach(Component::start);
         }
         logger.info("[{}] start success......", this.getName());
         return true;
@@ -113,12 +113,12 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
      * @return
      */
     @Override
-    public boolean shutdown() {
+    public boolean stop() {
         // 上游 -> 下游 依次关闭
         logger.info("[{}] is ready to shutdown......", this.getName());
         Collection<Component> downStreams = getNext();
         if (!CollectionUtils.isEmpty(downStreams)) {
-            downStreams.forEach(Component::shutdown);
+            downStreams.forEach(Component::stop);
         }
         logger.info("[{}] shutdown success......", this.getName());
         return true;

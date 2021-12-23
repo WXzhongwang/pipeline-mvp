@@ -29,8 +29,8 @@ public abstract class Pipeline implements IPipelineLifeCycle {
     }
 
     @Override
-    public boolean start() {
-        boolean startUp = source.startUp();
+    public boolean open() {
+        boolean startUp = source.start();
         if (startUp) {
             if (!source.start()) {
                 logger.error("source [{}] start failed", source.getName());
@@ -41,7 +41,7 @@ public abstract class Pipeline implements IPipelineLifeCycle {
     }
 
     @Override
-    public boolean stop() {
-        return source.shutdown();
+    public boolean close() {
+        return source.stop();
     }
 }

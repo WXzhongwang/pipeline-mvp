@@ -13,15 +13,16 @@ import org.slf4j.LoggerFactory;
 
 public class MqConsumerProperties {
     private static final Logger logger = LoggerFactory.getLogger(MqConsumerProperties.class);
-
+    private final static int DEFAULT_CONSUME_THREAD_NUM = 1;
     private String nameSrvAddr;
     private String topic;
     private String groupId;
     private String tags = "*";
 
-    private int ConsumeThreadNums = 1;
+    private int consumeThreadNums = 1;
     private String accessKeyId;
     private String accessKeySecret;
+    private Long maxCachedMessageAmount;
 
     public MqConsumerProperties() {
     }
@@ -67,11 +68,11 @@ public class MqConsumerProperties {
     }
 
     public int getConsumeThreadNums() {
-        return ConsumeThreadNums;
+        return consumeThreadNums < 0 ? DEFAULT_CONSUME_THREAD_NUM : consumeThreadNums;
     }
 
     public void setConsumeThreadNums(int consumeThreadNums) {
-        ConsumeThreadNums = consumeThreadNums;
+        this.consumeThreadNums = consumeThreadNums;
     }
 
     public String getAccessKeyId() {
@@ -88,6 +89,14 @@ public class MqConsumerProperties {
 
     public void setAccessKeySecret(String accessKeySecret) {
         this.accessKeySecret = accessKeySecret;
+    }
+
+    public Long getMaxCachedMessageAmount() {
+        return maxCachedMessageAmount;
+    }
+
+    public void setMaxCachedMessageAmount(Long maxCachedMessageAmount) {
+        this.maxCachedMessageAmount = maxCachedMessageAmount;
     }
 
     public boolean validate() {

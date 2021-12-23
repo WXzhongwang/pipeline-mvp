@@ -28,7 +28,7 @@ public interface LifeCycle {
      *
      * @return
      */
-    boolean startUp();
+    boolean start();
 
 
     /**
@@ -36,5 +36,5 @@ public interface LifeCycle {
      *
      * @return
      */
-    boolean shutdown();
+    boolean stop();
 }

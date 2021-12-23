@@ -57,13 +57,14 @@ public class PipelineContext implements IPipelineLifeCycle {
     }
 
     @Override
-    public boolean start() {
+    public boolean open() {
         if (null == pipelines || pipelines.isEmpty()) {
             logger.error("no pipeline...");
             return false;
         }
         for (Pipeline pipeline : pipelines) {
-            if (!pipeline.start()) {
+            // 开启管道
+            if (!pipeline.open()) {
                 logger.error("source [{}] start failed...", pipeline.source.getName());
                 return false;
             }
@@ -72,9 +73,10 @@ public class PipelineContext implements IPipelineLifeCycle {
     }
 
     @Override
-    public boolean stop() {
+    public boolean close() {
         for (Pipeline pipeline : pipelines) {
-            if (!pipeline.stop()) {
+            // 关闭管道
+            if (!pipeline.close()) {
                 logger.error("source [{}] stop failed...", pipeline.source.getName());
                 return false;
             }

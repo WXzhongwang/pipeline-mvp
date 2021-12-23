@@ -20,5 +20,9 @@
             <groupId>com.rany.ops</groupId>
             <artifactId>pipeline-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.aliyun.openservices</groupId>
+            <artifactId>ons-client</artifactId>
+        </dependency>
     </dependencies>
 </project>

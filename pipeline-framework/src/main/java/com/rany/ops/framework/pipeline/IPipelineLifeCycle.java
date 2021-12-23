@@ -21,12 +21,12 @@ public interface IPipelineLifeCycle {
      *
      * @return
      */
-    boolean start();
+    boolean open();
 
     /**
      * 停止
      *
      * @return
      */
-    boolean stop();
+    boolean close();
 }
