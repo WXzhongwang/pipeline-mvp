@@ -36,14 +36,14 @@ public abstract class Channel extends AbstractChannel<KvRecord, KvRecord> {
     }
 
     @Override
-    public void executeBefore(KvRecord input) {
+    public void before(KvRecord input) {
         long processStartTime = System.currentTimeMillis();
         ((JSONArray) input.get(LoggerKeys.SLS_PROCESS_PLUGINS)).add(this.name);
         processTime.set(processStartTime);
     }
 
     @Override
-    public void executeAfter(KvRecord output) {
+    public void after(KvRecord output) {
         long cost = System.currentTimeMillis() - processTime.get();
         Object pluginTimes = output.get(LoggerKeys.SLS_PLUGIN_TIMES);
         if (pluginTimes instanceof JSONObject) {

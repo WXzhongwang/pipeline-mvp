@@ -63,7 +63,7 @@ public interface Component<T, R> extends LifeCycle {
      *
      * @param output 输入参数
      */
-    default void executeAfter(R output) {
+    default void after(R output) {
         // 默认空实现
     }
 
@@ -72,7 +72,7 @@ public interface Component<T, R> extends LifeCycle {
      *
      * @param input 输入
      */
-    default void executeBefore(T input) {
+    default void before(T input) {
         // 默认空实现
     }
 }

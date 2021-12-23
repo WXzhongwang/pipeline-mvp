@@ -59,11 +59,11 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
 
     @Override
     public void execute(T input) {
-        executeBefore(input);
+        before(input);
         // 当前组件执行
         logger.info("[{}] is executing......", this.getName());
         R r = doExecute(input);
-        executeAfter(r);
+        after(r);
         // 单个component执行完毕
 
         // 获取下游组件，并执行

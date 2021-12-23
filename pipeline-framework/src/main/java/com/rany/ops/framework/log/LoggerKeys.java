@@ -13,14 +13,25 @@ public final class LoggerKeys {
     private LoggerKeys() {
     }
 
+    /**
+     * 日志写入时间
+     */
     public static final String SLS_LOGGER_TIME = "sls_logger_time";
+    /**
+     * 数据开始处理的时间
+     */
     public static final String SLS_PROCESS_TIME_MS = "sls_process_time_ms";
     /**
      * 开始处理时间
      */
     public static final String SLS_START_PROCESS_TIME_MS = "sls_start_process_time_ms";
-    public static final String SLS_FINISH_PROCESS_TIME_MS = "sls_finish_process_time_ms";
+    /**
+     * 流经哪些流程组件
+     */
     public static final String SLS_PROCESS_PLUGINS = "sls_process_plugins";
+    /**
+     * 各流程组件耗时
+     */
     public static final String SLS_PLUGIN_TIMES = "sls_plugin_times";
     public static final String SLS_FILTER_PLUGIN = "sls_filter_plugin";
     public static final String SLS_DISCARD_PLUGIN = "sls_discard_plugin";
@@ -28,8 +39,4 @@ public final class LoggerKeys {
     public static final String SLS_ERROR_REASON = "sls_error_reason";
     public static final String SLS_FILTER_REASON = "sls_filter_reason";
     public static final String SLS_DISCARD_REASON = "sls_discard_reason";
-    public static final String SLS_DATA_SUPPLEMENT = "sls_data_supplement";
-
-
-    public static final String SLS_CURRENT_PROCESS_TIME_MS = "sls_current_process_time_ms";
 }

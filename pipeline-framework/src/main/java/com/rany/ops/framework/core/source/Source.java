@@ -22,7 +22,7 @@ public abstract class Source extends AbstractSource<KvRecord, KvRecord> {
     protected static ThreadLocal<Long> processTime = new ThreadLocal<>();
 
     @Override
-    public void executeBefore(KvRecord input) {
+    public void before(KvRecord input) {
         // 记录开始处理时间
         long processStartTime = System.currentTimeMillis();
         input.put(LoggerKeys.SLS_START_PROCESS_TIME_MS, processStartTime);
@@ -31,11 +31,11 @@ public abstract class Source extends AbstractSource<KvRecord, KvRecord> {
         }
         ((JSONArray) input.get(LoggerKeys.SLS_PROCESS_PLUGINS)).add(this.name);
         processTime.set(processStartTime);
-        super.executeBefore(input);
+        super.before(input);
     }
 
     @Override
-    public void executeAfter(KvRecord output) {
+    public void after(KvRecord output) {
         long cost = System.currentTimeMillis() - processTime.get();
         if (!output.has(LoggerKeys.SLS_PLUGIN_TIMES)) {
             output.put(LoggerKeys.SLS_PLUGIN_TIMES, new JSONObject());
