@@ -1,7 +1,7 @@
 [
   {
     "name": "counter",
-    "class": "com.rany.ops.framework.resource.DummyResource",
+    "className": "com.rany.ops.framework.resource.DummyResource",
     "configMap": {
       "initValue": 20
     },

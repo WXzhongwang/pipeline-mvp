@@ -3,7 +3,6 @@ package com.rany.ops.framework.resource;
 import com.rany.ops.common.reflection.ReflectClass;
 import com.rany.ops.common.reflection.ReflectUtil;
 import com.rany.ops.framework.config.ResourceConfig;
-import com.rany.ops.framework.exception.ResourceException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.PooledObjectFactory;
@@ -78,12 +77,12 @@ public class ResourceFactory implements PooledObjectFactory<Resource> {
     }
 
     @Override
-    public void activateObject(PooledObject<Resource> pooledObject) throws Exception {
-        throw new ResourceException("unsupported operation");
+    public void activateObject(PooledObject<Resource> pooledObject) {
+
     }
 
     @Override
-    public void passivateObject(PooledObject<Resource> pooledObject) throws Exception {
-        throw new ResourceException("unsupported operation");
+    public void passivateObject(PooledObject<Resource> pooledObject) {
+
     }
 }

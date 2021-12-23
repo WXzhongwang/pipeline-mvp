@@ -1,5 +1,7 @@
 package com.rany.ops.framework.resource;
 
+import com.rany.ops.common.utils.MapUtil;
+
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -14,17 +16,17 @@ public class DummyResource extends Resource<AtomicLong> {
 
     private final static String KEY_INIT_VALUE = "initValue";
 
-    protected DummyResource(String name) {
+    public DummyResource(String name) {
         super(name);
     }
 
     @Override
     protected AtomicLong create(Map<String, Object> config) {
-        return new AtomicLong((Long) config.getOrDefault(KEY_INIT_VALUE, 0L));
+        return new AtomicLong(Long.valueOf(MapUtil.getMapValue(config, KEY_INIT_VALUE, Integer.class)));
     }
 
     @Override
     public void destroy() {
-        
+
     }
 }

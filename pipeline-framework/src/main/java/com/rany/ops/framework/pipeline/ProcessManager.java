@@ -2,6 +2,7 @@ package com.rany.ops.framework.pipeline;
 
 import com.rany.ops.common.reflection.ReflectClass;
 import com.rany.ops.common.reflection.ReflectUtil;
+import com.rany.ops.framework.annotation.ResDependencyInjector;
 import com.rany.ops.framework.config.ProcessConfig;
 import com.rany.ops.framework.config.ProcessorConfig;
 import com.rany.ops.framework.config.SlsConfig;
@@ -108,6 +109,8 @@ public class ProcessManager {
             sink.setSlsConfig(slsConfig);
 
             // TODO: resource inject
+            ResDependencyInjector.inject(sink);
+
             sinkMap.put(sinkName, sink);
             logger.info("sink [{}] has finished init", sinkName);
         }
@@ -145,7 +148,7 @@ public class ProcessManager {
             channel.setSlsConfig(slsConfig);
 
             // TODO: resource inject
-
+            ResDependencyInjector.inject(channel);
             channelMap.put(channelName, channel);
             logger.info("channel [{}] has finished init", channelName);
         }
@@ -183,7 +186,8 @@ public class ProcessManager {
             source.setSlsConfig(slsConfig);
 
             // TODO: resource inject
-
+            ResDependencyInjector.inject(source);
+            
             logger.info("source [{}] has finished init", sourceName);
             sourceMap.put(sourceName, source);
 

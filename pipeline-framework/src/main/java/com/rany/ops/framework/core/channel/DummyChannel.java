@@ -1,5 +1,6 @@
 package com.rany.ops.framework.core.channel;
 
+import com.rany.ops.framework.annotation.Res;
 import com.rany.ops.framework.kv.KvRecord;
 
 import java.util.Map;
@@ -16,11 +17,13 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class DummyChannel extends Channel {
 
-    private AtomicLong counter = new AtomicLong(0L);
 
     public DummyChannel(String name) {
         super(name);
     }
+
+    @Res(name = "${counter}", allowNull = false)
+    private AtomicLong counter;
 
     @Override
     protected KvRecord doExecute(KvRecord kvRecord) {
