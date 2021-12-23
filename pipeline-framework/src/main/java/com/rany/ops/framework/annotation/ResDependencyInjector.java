@@ -19,7 +19,7 @@ import java.util.regex.Pattern;
 /**
  * 资源注入
  *
- * @author zhongshengwang
+ * @author dick
  * @description 资源注入
  * @date 2021/12/23 9:37 下午
  * @email 18668485565@163.com

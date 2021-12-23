@@ -8,7 +8,7 @@ import java.lang.annotation.Target;
 /**
  * 资源注解
  *
- * @author zhongshengwang
+ * @author dick
  * @description 资源注解，字段级别
  * @date 2021/12/23 9:33 下午
  * @email 18668485565@163.com
