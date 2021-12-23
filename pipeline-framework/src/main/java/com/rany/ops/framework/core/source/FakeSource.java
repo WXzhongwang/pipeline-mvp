@@ -1,5 +1,6 @@
 package com.rany.ops.framework.core.source;
 
+import com.rany.ops.common.utils.MapUtil;
 import com.rany.ops.framework.kv.KvRecord;
 import com.rany.ops.framework.kv.KvRecords;
 
@@ -20,6 +21,8 @@ public class FakeSource extends Source {
     private boolean running = false;
     private Thread thread;
 
+    private static final String KEY_TIME_INTERVAL_MS = "timeIntervalMs";
+
     public FakeSource(String name) {
         super(name);
     }
@@ -31,6 +34,10 @@ public class FakeSource extends Source {
 
     @Override
     public boolean init(Map<String, Object> config) {
+        Integer timeIntervalMs = MapUtil.getMapValue(config, KEY_TIME_INTERVAL_MS, Integer.class);
+        if (null != timeIntervalMs) {
+            this.timeIntervalMs = timeIntervalMs.intValue();
+        }
         return true;
     }
 
