@@ -25,6 +25,6 @@ public class DummyResource extends Resource<AtomicLong> {
 
     @Override
     public void destroy() {
-
+        
     }
 }

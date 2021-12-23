@@ -25,11 +25,10 @@ public abstract class Sink extends AbstractSink<KvRecord, KvRecord> {
     protected static ThreadLocal<Long> processTime = new ThreadLocal<>();
 
     @Override
-    public void executeBefore(KvRecord kvRecord) {
+    public void executeBefore(KvRecord input) {
         long processStartTime = System.currentTimeMillis();
-        ((JSONArray) kvRecord.get(LoggerKeys.SLS_PROCESS_PLUGINS)).add(this.name);
+        ((JSONArray) input.get(LoggerKeys.SLS_PROCESS_PLUGINS)).add(this.name);
         processTime.set(processStartTime);
-        super.executeBefore(kvRecord);
     }
 
     @Override

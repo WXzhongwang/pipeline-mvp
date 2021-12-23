@@ -51,7 +51,7 @@ public class PipelineContext implements IPipelineLifeCycle {
             logger.info("process manager init failed...");
             return false;
         }
-        pipelines = processManager.buildChain();
+        pipelines = processManager.buildPipes();
         logger.info("multiple pipe line context prepare success...");
         return true;
     }

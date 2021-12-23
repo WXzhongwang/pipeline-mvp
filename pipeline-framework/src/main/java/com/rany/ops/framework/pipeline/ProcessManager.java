@@ -249,7 +249,7 @@ public class ProcessManager {
         return true;
     }
 
-    public boolean checkLoopReference(AbstractComponent component, Set<String> components) {
+    private boolean checkLoopReference(AbstractComponent component, Set<String> components) {
         Collection<AbstractComponent> next = component.getNext();
         Iterator<AbstractComponent> iterator = next.iterator();
         while (iterator.hasNext()) {
@@ -266,7 +266,7 @@ public class ProcessManager {
         return true;
     }
 
-    public List<Pipeline> buildChain() {
+    public List<Pipeline> buildPipes() {
         List<Pipeline> lines = new ArrayList<>();
         for (Map.Entry<String, Source> sourceEntry : sourceMap.entrySet()) {
             Source source = sourceEntry.getValue();

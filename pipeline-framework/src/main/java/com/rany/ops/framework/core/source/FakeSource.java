@@ -52,7 +52,7 @@ public class FakeSource extends Source {
 
     @Override
     public boolean shutdown() {
-        logger.info("fake receiver is stopping ...");
+        logger.info("fake source is stopping ...");
         running = false;
         if (thread != null) {
             thread.interrupt();
