@@ -19,10 +19,10 @@ import java.util.Properties;
 /**
  * RocketMQ source
  *
- * @author zhongshengwang
+ * @author dick
  * @description TODO
  * @date 2021/12/23 10:53 下午
- * @email zhongshengwang@shuwen.com
+ * @email 18668485565@163.com
  */
 
 public class RocketSource extends Source {
