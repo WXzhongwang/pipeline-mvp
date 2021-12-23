@@ -45,7 +45,6 @@ public class Log {
         SLS_LOG_PROPS.add(LoggerKeys.SLS_ERROR_REASON);
         SLS_LOG_PROPS.add(LoggerKeys.SLS_FILTER_REASON);
         SLS_LOG_PROPS.add(LoggerKeys.SLS_DISCARD_REASON);
-        SLS_LOG_PROPS.add(LoggerKeys.SLS_DATA_SUPPLEMENT);
     }
 
     private static String toJsonString(KvRecord kvRecord, List<String> loggerKeys) {

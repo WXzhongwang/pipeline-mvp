@@ -56,4 +56,19 @@ public abstract class Channel extends AbstractChannel<KvRecord, KvRecord> {
             }
         }
     }
+
+    @Override
+    public void execute(KvRecord input) {
+        try {
+            super.execute(input);
+        } catch (Exception ex) {
+            logger.warn("channel [{}] occur an exception......", this.getName(), ex);
+            JSONArray array = (JSONArray) input.get(LoggerKeys.SLS_PROCESS_PLUGINS);
+            String exceptionOne = (String) array.get(array.size() - 1);
+            input.put(LoggerKeys.SLS_EXCEPTION_PLUGIN, exceptionOne);
+            if (slsConfig.isEnable()) {
+                Log.info(input, slsConfig.getLoggerKeys());
+            }
+        }
+    }
 }

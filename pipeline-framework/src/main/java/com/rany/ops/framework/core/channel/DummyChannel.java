@@ -3,8 +3,6 @@ package com.rany.ops.framework.core.channel;
 import com.rany.ops.framework.kv.KvRecord;
 
 import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
@@ -28,12 +26,6 @@ public class DummyChannel extends Channel {
     protected KvRecord doExecute(KvRecord kvRecord) {
         long count = counter.getAndAdd(1);
         kvRecord.put("count", count);
-        Random random = new Random();
-        int sleepMs = random.nextInt(1000);
-        try {
-            TimeUnit.MILLISECONDS.sleep(sleepMs);
-        } catch (InterruptedException e) {
-        }
         return kvRecord;
     }
 

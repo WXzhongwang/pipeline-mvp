@@ -3,6 +3,7 @@ package com.rany.ops.framework.core.source;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.rany.ops.framework.kv.KvRecord;
+import com.rany.ops.framework.log.Log;
 import com.rany.ops.framework.log.LoggerKeys;
 
 /**
@@ -32,6 +33,26 @@ public abstract class Source extends AbstractSource<KvRecord, KvRecord> {
         ((JSONArray) input.get(LoggerKeys.SLS_PROCESS_PLUGINS)).add(this.name);
         processTime.set(processStartTime);
         super.before(input);
+    }
+
+    @Override
+    public void execute(KvRecord input) {
+        try {
+            // 失败异常捕捉
+            super.execute(input);
+        } catch (Exception ex) {
+            logger.warn("source [{}] occur an exception......", this.getName(), ex);
+            if (!input.has(LoggerKeys.SLS_PROCESS_PLUGINS)) {
+                input.put(LoggerKeys.SLS_PROCESS_PLUGINS, new JSONArray());
+            }
+            JSONArray array = (JSONArray) input.get(LoggerKeys.SLS_PROCESS_PLUGINS);
+            String exceptionOne = (String) array.get(array.size() - 1);
+            input.put(LoggerKeys.SLS_EXCEPTION_PLUGIN, exceptionOne);
+
+            if (slsConfig.isEnable()) {
+                Log.info(input, slsConfig.getLoggerKeys());
+            }
+        }
     }
 
     @Override
