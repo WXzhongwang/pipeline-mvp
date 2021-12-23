@@ -48,7 +48,7 @@ public class Log {
         SLS_LOG_PROPS.add(LoggerKeys.SLS_DATA_SUPPLEMENT);
     }
 
-    private static String generateJsonString(KvRecord kvRecord, List<String> loggerKeys) {
+    private static String toJsonString(KvRecord kvRecord, List<String> loggerKeys) {
         JSONObject jsonObject = new JSONObject();
         for (String prop : SLS_LOG_PROPS) {
             if (kvRecord.has(prop)) {
@@ -75,7 +75,7 @@ public class Log {
      * @param loggerKeys 打印字段列表
      */
     public static void info(KvRecord kvRecord, List<String> loggerKeys) {
-        logger.info("{}", generateJsonString(kvRecord, loggerKeys));
+        logger.info("{}", toJsonString(kvRecord, loggerKeys));
     }
 
 }
