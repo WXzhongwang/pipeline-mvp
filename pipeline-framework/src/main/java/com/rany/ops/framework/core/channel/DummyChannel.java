@@ -1,7 +1,6 @@
 package com.rany.ops.framework.core.channel;
 
 import com.rany.ops.framework.kv.KvRecord;
-import com.rany.ops.framework.log.Log;
 
 import java.util.Map;
 import java.util.Random;
@@ -9,7 +8,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
- * 计数 channel
+ * 累加计数 channel
  *
  * @author dick
  * @description TODO
@@ -32,9 +31,6 @@ public class DummyChannel extends Channel {
         Random random = new Random();
         int sleepMs = random.nextInt(1000);
         try {
-
-            Log.info(kvRecord, null);
-            logger.info(kvRecord.toString());
             TimeUnit.MILLISECONDS.sleep(sleepMs);
         } catch (InterruptedException e) {
         }

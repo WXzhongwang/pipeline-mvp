@@ -19,7 +19,7 @@ public final class LoggerKeys {
      * 开始处理时间
      */
     public static final String SLS_START_PROCESS_TIME_MS = "sls_start_process_time_ms";
-    public static final String SLS_CURRENT_PROCESS_TIME_MS = "sls_current_process_time_ms";
+    public static final String SLS_FINISH_PROCESS_TIME_MS = "sls_finish_process_time_ms";
     public static final String SLS_PROCESS_PLUGINS = "sls_process_plugins";
     public static final String SLS_PLUGIN_TIMES = "sls_plugin_times";
     public static final String SLS_FILTER_PLUGIN = "sls_filter_plugin";
@@ -29,4 +29,7 @@ public final class LoggerKeys {
     public static final String SLS_FILTER_REASON = "sls_filter_reason";
     public static final String SLS_DISCARD_REASON = "sls_discard_reason";
     public static final String SLS_DATA_SUPPLEMENT = "sls_data_supplement";
+
+
+    public static final String SLS_CURRENT_PROCESS_TIME_MS = "sls_current_process_time_ms";
 }

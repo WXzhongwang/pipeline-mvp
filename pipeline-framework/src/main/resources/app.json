@@ -5,7 +5,9 @@
   },
   "sls": {
     "enable": true,
-    "loggerKeys": []
+    "loggerKeys": [
+      "count"
+    ]
   },
   "monitor": {
     "enable": "true",

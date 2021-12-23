@@ -1,5 +1,7 @@
 package com.rany.ops.framework.core;
 
+import com.rany.ops.common.json.CopyUtils;
+import com.rany.ops.framework.config.SlsConfig;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,9 +17,11 @@ import java.util.Collection;
  * @date 2021/12/16 10:33 上午
  * @email 18668485565@163.com
  */
-public abstract class AbstractComponent<T, R> implements Component<T> {
+public abstract class AbstractComponent<T, R> implements Component<T, R> {
 
     protected final static Logger logger = LoggerFactory.getLogger(AbstractComponent.class);
+
+    protected volatile SlsConfig slsConfig;
 
     private volatile Collection<Component> next = new ArrayList<>();
 
@@ -49,19 +53,29 @@ public abstract class AbstractComponent<T, R> implements Component<T> {
         this.prev = prev;
     }
 
+    public void setSlsConfig(SlsConfig slsConfig) {
+        this.slsConfig = slsConfig;
+    }
+
     @Override
-    public void execute(T o) {
+    public void execute(T input) {
+        executeBefore(input);
         // 当前组件执行
         logger.info("[{}] is executing......", this.getName());
-        R r = doExecute(o);
+        R r = doExecute(input);
+        executeAfter(r);
+        // 单个component执行完毕
+
         // 获取下游组件，并执行
         Collection<Component> downStreams = getNext();
         if (!CollectionUtils.isEmpty(downStreams)) {
-            downStreams.forEach(c -> c.execute(r));
+            for (Component downStream : downStreams) {
+                R newR = CopyUtils.deepCopy(r);
+                downStream.execute(newR);
+            }
         }
         logger.info("[{}] execute success......", this.getName());
     }
-
 
     @Override
     public void addNext(Component next) {

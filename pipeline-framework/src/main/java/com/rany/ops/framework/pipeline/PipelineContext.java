@@ -1,6 +1,7 @@
 package com.rany.ops.framework.pipeline;
 
 import com.rany.ops.framework.config.ProcessConfig;
+import com.rany.ops.framework.config.SlsConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -29,10 +30,16 @@ public class PipelineContext implements IPipelineLifeCycle {
      */
     private ProcessConfig process;
 
+    /**
+     * 日志跟踪配置
+     */
+    private SlsConfig slsConfig;
+
     private ProcessManager processManager;
 
-    public PipelineContext(ProcessConfig process) {
+    public PipelineContext(ProcessConfig process, SlsConfig slsConfig) {
         this.process = process;
+        this.slsConfig = slsConfig;
 
     }
 
@@ -40,7 +47,7 @@ public class PipelineContext implements IPipelineLifeCycle {
     public boolean prepare() {
         logger.info("multiple pipe line context start to prepare...");
         processManager = new ProcessManager();
-        if (!processManager.init(process)) {
+        if (!processManager.init(process, slsConfig)) {
             logger.info("process manager init failed...");
             return false;
         }

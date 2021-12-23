@@ -11,7 +11,7 @@ import java.util.Collection;
  * @email 18668485565@163.com
  */
 
-public interface Component<T> extends LifeCycle {
+public interface Component<T, R> extends LifeCycle {
 
     /**
      * 获取组件名称
@@ -57,4 +57,22 @@ public interface Component<T> extends LifeCycle {
      * @param input
      */
     void execute(T input);
+
+    /**
+     * 执行完成后
+     *
+     * @param output 输入参数
+     */
+    default void executeAfter(R output) {
+        // 默认空实现
+    }
+
+    /**
+     * 执行完成后
+     *
+     * @param input 输入
+     */
+    default void executeBefore(T input) {
+        // 默认空实现
+    }
 }

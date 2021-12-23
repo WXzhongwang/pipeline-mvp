@@ -4,6 +4,7 @@ import com.rany.ops.common.reflection.ReflectClass;
 import com.rany.ops.common.reflection.ReflectUtil;
 import com.rany.ops.framework.config.ProcessConfig;
 import com.rany.ops.framework.config.ProcessorConfig;
+import com.rany.ops.framework.config.SlsConfig;
 import com.rany.ops.framework.core.AbstractComponent;
 import com.rany.ops.framework.core.channel.Channel;
 import com.rany.ops.framework.core.sink.Sink;
@@ -36,13 +37,15 @@ public class ProcessManager {
     private Map<String, Channel> channelMap;
     private Map<String, Sink> sinkMap;
 
+    private SlsConfig slsConfig;
+
     public ProcessManager() {
         sourceMap = new HashMap<>();
         channelMap = new HashMap<>();
         sinkMap = new HashMap<>();
     }
 
-    public boolean init(final ProcessConfig process) {
+    public boolean init(final ProcessConfig process, final SlsConfig slsConfig) {
         logger.info("processor manager is init ...");
         if (Objects.nonNull(process)) {
             if (CollectionUtils.isEmpty(process.getSources())) {
@@ -50,6 +53,11 @@ public class ProcessManager {
                 return false;
             }
         }
+        if (Objects.isNull(slsConfig)) {
+            logger.error("no sls config");
+            return false;
+        }
+        this.slsConfig = slsConfig;
         List<ProcessorConfig> sources = process.getSources();
         List<ProcessorConfig> channels = process.getChannels();
         List<ProcessorConfig> sinks = process.getSinks();
@@ -97,6 +105,7 @@ public class ProcessManager {
                 logger.error("sink [{}]  init failed", sinkName);
                 return false;
             }
+            sink.setSlsConfig(slsConfig);
 
             // TODO: resource inject
             sinkMap.put(sinkName, sink);
@@ -133,6 +142,7 @@ public class ProcessManager {
                 return false;
             }
             channel.setNextProcessors(channelConfig.getNext());
+            channel.setSlsConfig(slsConfig);
 
             // TODO: resource inject
 
@@ -161,6 +171,7 @@ public class ProcessManager {
                 return false;
             }
             Source source = (Source) reflectClass.createInstance(sourceName);
+
             if (source == null) {
                 logger.error("create source [{}] instance failed", sourceName);
                 return false;
@@ -169,6 +180,7 @@ public class ProcessManager {
                 logger.error("source [{}]  init failed", sourceName);
                 return false;
             }
+            source.setSlsConfig(slsConfig);
 
             // TODO: resource inject
 
