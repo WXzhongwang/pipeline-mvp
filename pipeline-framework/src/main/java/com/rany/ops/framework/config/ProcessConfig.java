@@ -12,15 +12,15 @@ import java.util.List;
 
 public class ProcessConfig implements Serializable {
 
-    private List<ProcessorConfig> sources;
+    private List<SourceProcessorConfig> sources;
     private List<ProcessorConfig> channels;
     private List<ProcessorConfig> sinks;
 
-    public List<ProcessorConfig> getSources() {
+    public List<SourceProcessorConfig> getSources() {
         return sources;
     }
 
-    public void setSources(List<ProcessorConfig> sources) {
+    public void setSources(List<SourceProcessorConfig> sources) {
         this.sources = sources;
     }
 

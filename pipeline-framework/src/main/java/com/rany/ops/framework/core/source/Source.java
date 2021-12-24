@@ -22,6 +22,12 @@ public abstract class Source extends AbstractSource<KvRecord, KvRecord> {
 
     protected static ThreadLocal<Long> processTime = new ThreadLocal<>();
 
+    protected MessageConvertor convertor;
+
+    public void setConvertor(MessageConvertor convertor) {
+        this.convertor = convertor;
+    }
+
     @Override
     public void before(KvRecord input) {
         // 记录开始处理时间

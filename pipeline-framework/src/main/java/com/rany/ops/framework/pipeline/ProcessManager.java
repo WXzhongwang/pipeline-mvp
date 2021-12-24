@@ -3,12 +3,15 @@ package com.rany.ops.framework.pipeline;
 import com.rany.ops.common.reflection.ReflectClass;
 import com.rany.ops.common.reflection.ReflectUtil;
 import com.rany.ops.framework.annotation.ResDependencyInjector;
+import com.rany.ops.framework.config.ConvertConfig;
 import com.rany.ops.framework.config.ProcessConfig;
 import com.rany.ops.framework.config.ProcessorConfig;
 import com.rany.ops.framework.config.SlsConfig;
+import com.rany.ops.framework.config.SourceProcessorConfig;
 import com.rany.ops.framework.core.AbstractComponent;
 import com.rany.ops.framework.core.channel.Channel;
 import com.rany.ops.framework.core.sink.Sink;
+import com.rany.ops.framework.core.source.MessageConvertor;
 import com.rany.ops.framework.core.source.Source;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
@@ -59,7 +62,7 @@ public class ProcessManager {
             return false;
         }
         this.slsConfig = slsConfig;
-        List<ProcessorConfig> sources = process.getSources();
+        List<SourceProcessorConfig> sources = process.getSources();
         List<ProcessorConfig> channels = process.getChannels();
         List<ProcessorConfig> sinks = process.getSinks();
 
@@ -108,7 +111,7 @@ public class ProcessManager {
             }
             sink.setSlsConfig(slsConfig);
 
-            // TODO: resource inject
+            // resource inject
             ResDependencyInjector.inject(sink);
 
             sinkMap.put(sinkName, sink);
@@ -146,8 +149,7 @@ public class ProcessManager {
             }
             channel.setNextProcessors(channelConfig.getNext());
             channel.setSlsConfig(slsConfig);
-
-            // TODO: resource inject
+            // resource inject
             ResDependencyInjector.inject(channel);
             channelMap.put(channelName, channel);
             logger.info("channel [{}] has finished init", channelName);
@@ -155,8 +157,8 @@ public class ProcessManager {
         return true;
     }
 
-    private boolean initSource(List<ProcessorConfig> sources) {
-        for (ProcessorConfig sourceConfig : sources) {
+    private boolean initSource(List<SourceProcessorConfig> sources) {
+        for (SourceProcessorConfig sourceConfig : sources) {
             String sourceName = sourceConfig.getName();
             if (!sourceConfig.validate()) {
                 logger.error("source [{}] validate failed", sourceName);
@@ -174,24 +176,27 @@ public class ProcessManager {
                 return false;
             }
             Source source = (Source) reflectClass.createInstance(sourceName);
-
             if (source == null) {
                 logger.error("create source [{}] instance failed", sourceName);
                 return false;
             }
+            // init convertor
+            if (!initMessageConvertor(sourceConfig, source)) {
+                logger.error("message convert init failed in source [{}]", sourceName);
+                return false;
+            }
+            // init source
             if (!source.init(sourceConfig.getConfig())) {
                 logger.error("source [{}]  init failed", sourceName);
                 return false;
             }
             source.setSlsConfig(slsConfig);
-
-            // TODO: resource inject
+            // resource inject
             ResDependencyInjector.inject(source);
-            
-            logger.info("source [{}] has finished init", sourceName);
             sourceMap.put(sourceName, source);
-
-            // 构建执行链引用关系
+            logger.info("source [{}] has finished init", sourceName);
+            
+            // build chain
             if (!setSourceDownStream(source, sourceConfig.getNext())) {
                 logger.info("source [{}] chain reference chain build failed", sourceName);
                 return false;
@@ -199,6 +204,30 @@ public class ProcessManager {
         }
         return true;
     }
+
+    private boolean initMessageConvertor(SourceProcessorConfig sourceConfig, Source source) {
+        if (null != sourceConfig.getConvertor()) {
+            ConvertConfig convertConfig = sourceConfig.getConvertor();
+            String className = convertConfig.getClassName();
+            ReflectClass convertorClass = ReflectUtil.loadClass(className);
+            if (convertorClass == null) {
+                logger.error("load class[{}] failed", className);
+                return false;
+            }
+            MessageConvertor messageConvertor = (MessageConvertor) convertorClass.createInstance();
+            if (messageConvertor == null) {
+                logger.error("create message convertor instance failed in source [{}]", source.getName());
+                return false;
+            }
+            if (!messageConvertor.init(convertConfig.getConfig())) {
+                logger.error("message convertor init failed in source [{}]", source.getName());
+                return false;
+            }
+            source.setConvertor(messageConvertor);
+        }
+        return true;
+    }
+
 
     private boolean setSourceDownStream(Source source, Set<String> next) {
         if (CollectionUtils.isEmpty(next)) {
