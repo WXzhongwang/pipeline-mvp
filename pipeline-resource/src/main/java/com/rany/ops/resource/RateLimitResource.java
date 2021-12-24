@@ -31,7 +31,7 @@ public class RateLimitResource extends Resource<RateLimiter> {
     @Override
     protected RateLimiter create(Map<String, Object> configMap) {
         if (!configMap.containsKey(KEY_PERMITS_PER_SECOND)) {
-            logger.error("missing param[{}]", KEY_PERMITS_PER_SECOND);
+            logger.error("missing param [{}]", KEY_PERMITS_PER_SECOND);
             return null;
         }
         Double permitsPerSecond = MapUtil.getMapValue(configMap, KEY_PERMITS_PER_SECOND, Double.class);
