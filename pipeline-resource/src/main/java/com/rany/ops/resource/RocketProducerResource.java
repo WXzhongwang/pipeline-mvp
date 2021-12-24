@@ -14,7 +14,7 @@ import java.util.Map;
  * RocketMQ sender
  *
  * @author dick
- * @description TODO
+ * @description RocketMQ sender
  * @date 2021/12/24 9:45 下午
  * @email 18668485565@163.com
  */

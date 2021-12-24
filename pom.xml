@@ -46,6 +46,7 @@
 
 
         <ons.client.version>1.8.0.Final</ons.client.version>
+        <rabbit.version>5.2.0</rabbit.version>
     </properties>
 
     <dependencyManagement>
@@ -206,6 +207,12 @@
                 <groupId>com.aliyun.openservices</groupId>
                 <artifactId>ons-client</artifactId>
                 <version>${ons.client.version}</version>
+            </dependency>
+            <!--RabbitMQ-->
+            <dependency>
+                <groupId>com.rabbitmq</groupId>
+                <artifactId>amqp-client</artifactId>
+                <version>${rabbit.version}</version>
             </dependency>
 
         </dependencies>
