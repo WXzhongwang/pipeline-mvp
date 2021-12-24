@@ -10,20 +10,17 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>pipeline-plugin</artifactId>
+    <artifactId>pipeline-resource</artifactId>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
 
     <dependencies>
         <dependency>
             <groupId>com.rany.ops</groupId>
-            <artifactId>pipeline-framework</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.rany.ops</groupId>
             <artifactId>pipeline-common</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.aliyun.openservices</groupId>
-            <artifactId>ons-client</artifactId>
         </dependency>
     </dependencies>
 </project>

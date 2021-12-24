@@ -13,6 +13,7 @@
         <module>pipeline-common</module>
         <module>pipeline-framework</module>
         <module>pipeline-plugin</module>
+        <module>pipeline-resource</module>
     </modules>
 
     <properties>
@@ -62,6 +63,11 @@
             <dependency>
                 <groupId>com.rany.ops</groupId>
                 <artifactId>pipeline-plugin</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.rany.ops</groupId>
+                <artifactId>pipeline-resource</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -219,4 +225,15 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>private-releases</id>
+            <url>https://packages.aliyun.com/maven/repository/2170609-release-hUTFFV</url>
+        </repository>
+        <snapshotRepository>
+            <id>private-snapshots</id>
+            <url>https://packages.aliyun.com/maven/repository/2170609-snapshot-rIOUcz</url>
+        </snapshotRepository>
+    </distributionManagement>
 </project>
