@@ -6,14 +6,14 @@ import org.slf4j.LoggerFactory;
 
 /**
  * @author dick
- * @description TODO
+ * @description RocketMQ consumer properties
  * @date 2021/12/17 10:21 下午
  * @email 18668485565@163.com
  */
 
-public class MqConsumerProperties {
-    private static final Logger logger = LoggerFactory.getLogger(MqConsumerProperties.class);
-    private final static int DEFAULT_CONSUME_THREAD_NUM = 1;
+public class RocketConsumerProperties {
+    private static final Logger logger = LoggerFactory.getLogger(RocketConsumerProperties.class);
+    private static final int DEFAULT_CONSUME_THREAD_NUM = 1;
     private String nameSrvAddr;
     private String topic;
     private String groupId;
@@ -24,10 +24,10 @@ public class MqConsumerProperties {
     private String accessKeySecret;
     private Long maxCachedMessageAmount;
 
-    public MqConsumerProperties() {
+    public RocketConsumerProperties() {
     }
 
-    public MqConsumerProperties(String nameSrvAddr, String topic, String groupId, String accessKeyId, String accessKeySecret) {
+    public RocketConsumerProperties(String nameSrvAddr, String topic, String groupId, String accessKeyId, String accessKeySecret) {
         this.nameSrvAddr = nameSrvAddr;
         this.topic = topic;
         this.groupId = groupId;

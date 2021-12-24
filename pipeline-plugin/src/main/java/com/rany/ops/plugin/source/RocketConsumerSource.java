@@ -7,7 +7,7 @@ import com.aliyun.openservices.ons.api.Consumer;
 import com.aliyun.openservices.ons.api.ONSFactory;
 import com.aliyun.openservices.ons.api.PropertyKeyConst;
 import com.aliyun.openservices.ons.api.PropertyValueConst;
-import com.rany.ops.common.message.rocket.MqConsumerProperties;
+import com.rany.ops.common.message.rocket.RocketConsumerProperties;
 import com.rany.ops.framework.core.source.Source;
 import com.rany.ops.framework.kv.KvRecord;
 import com.rany.ops.framework.kv.KvRecords;
@@ -42,7 +42,7 @@ public class RocketConsumerSource extends Source {
     @Override
     public boolean init(Map<String, Object> config) {
         JSONObject configMap = new JSONObject(config);
-        MqConsumerProperties consumerConfig = JSON.toJavaObject(configMap, MqConsumerProperties.class);
+        RocketConsumerProperties consumerConfig = JSON.toJavaObject(configMap, RocketConsumerProperties.class);
         Properties properties = new Properties();
         if (!StringUtils.isEmpty(consumerConfig.getNameSrvAddr())) {
             properties.put(PropertyKeyConst.NAMESRV_ADDR, consumerConfig.getNameSrvAddr());
