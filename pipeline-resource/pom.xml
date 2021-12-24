@@ -21,5 +21,9 @@
             <groupId>com.rany.ops</groupId>
             <artifactId>pipeline-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.rany.ops</groupId>
+            <artifactId>pipeline-framework</artifactId>
+        </dependency>
     </dependencies>
 </project>

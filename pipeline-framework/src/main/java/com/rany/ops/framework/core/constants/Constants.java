@@ -10,4 +10,6 @@ package com.rany.ops.framework.core.constants;
 public final class Constants {
 
     public static final String SYSTEM_NAME = "pipeline";
+
+    public static final String INTERNAL_KEY_MESSAGE_ID = "input_message_id";
 }

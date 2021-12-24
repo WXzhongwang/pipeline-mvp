@@ -8,15 +8,16 @@ import java.io.Serializable;
 
 /**
  * RocketMQ producer
+ *
  * @author dick
  * @description RocketMQ producer
  * @date 2021/12/17 10:14 下午
  * @email 18668485565@163.com
  */
 
-public class MqProducerProperties implements Serializable {
+public class RocketProducerProperties implements Serializable {
 
-    private static final Logger logger = LoggerFactory.getLogger(MqProducerProperties.class);
+    private static final Logger logger = LoggerFactory.getLogger(RocketProducerProperties.class);
 
     private final static int DEFAULT_RETRY_CNT = 3;
     private final static int DEFAULT_REQUEST_TIMEOUT_MS = 3000;
@@ -29,10 +30,10 @@ public class MqProducerProperties implements Serializable {
     private String accessKeyId;
     private String accessKeySecret;
 
-    public MqProducerProperties() {
+    public RocketProducerProperties() {
     }
 
-    public MqProducerProperties(String nameSrvAddr, String groupId, String accessKeyId, String accessKeySecret) {
+    public RocketProducerProperties(String nameSrvAddr, String groupId, String accessKeyId, String accessKeySecret) {
         this.nameSrvAddr = nameSrvAddr;
         this.groupId = groupId;
         this.accessKeyId = accessKeyId;

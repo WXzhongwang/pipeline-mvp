@@ -1,6 +1,8 @@
 package com.rany.ops.framework.core.source;
 
 import com.rany.ops.framework.kv.KvRecords;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
@@ -15,6 +17,8 @@ import java.util.Map;
 
 public abstract class MessageConvertor {
 
+    protected static final Logger logger = LoggerFactory.getLogger(MessageConvertor.class);
+
     /**
      * 消息转换器初始化
      *
@@ -26,8 +30,8 @@ public abstract class MessageConvertor {
     /**
      * 消息转换
      *
-     * @param Message
+     * @param object
      * @return
      */
-    public abstract KvRecords convert(Object Message);
+    public abstract KvRecords convert(Object object);
 }

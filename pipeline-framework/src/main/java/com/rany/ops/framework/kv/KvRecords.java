@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -18,6 +19,17 @@ public class KvRecords implements Serializable {
     private final static Logger logger = LoggerFactory.getLogger(KvRecords.class);
 
     private List<KvRecord> kvRecords;
+
+    public KvRecords copy() {
+        KvRecords kvRecords = new KvRecords();
+        Iterator iterator = this.kvRecords.iterator();
+
+        while (iterator.hasNext()) {
+            KvRecord kvRecord = (KvRecord) iterator.next();
+            kvRecords.addRecord(kvRecord.copy());
+        }
+        return kvRecords;
+    }
 
     public KvRecords() {
         kvRecords = new ArrayList<>();

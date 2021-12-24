@@ -10,6 +10,7 @@ import com.aliyun.openservices.ons.api.PropertyValueConst;
 import com.rany.ops.common.message.rocket.MqConsumerProperties;
 import com.rany.ops.framework.core.source.Source;
 import com.rany.ops.framework.kv.KvRecord;
+import com.rany.ops.framework.kv.KvRecords;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Map;
@@ -25,11 +26,11 @@ import java.util.Properties;
  * @email 18668485565@163.com
  */
 
-public class RocketSource extends Source {
+public class RocketConsumerSource extends Source {
 
     private Consumer consumer;
 
-    public RocketSource(String name) {
+    public RocketConsumerSource(String name) {
         super(name);
     }
 
@@ -60,18 +61,19 @@ public class RocketSource extends Source {
                     consumerConfig.getTopic(), consumerConfig.getTags());
             consumer.subscribe(consumerConfig.getTopic(), consumerConfig.getTags(), (message, consumeContext) -> {
                 try {
-                    KvRecord kvRecord = new KvRecord();
-                    // TODO: message convert to kv
-                    this.execute(kvRecord);
+                    KvRecords kvRecords = convertor.convert(message);
+                    for (int i = 0; i < kvRecords.getRecordCnt(); i++) {
+                        KvRecord record = kvRecords.getRecord(i);
+                        this.execute(record.copy());
+                    }
                     return Action.CommitMessage;
                 } catch (Throwable e) {
-                    logger.error("process RocketMQ data failed for topic[{}] and msgId[{}], cause[{}]",
+                    logger.error("process RocketMQ data failed for topic [{}] and msgId [{}], cause [{}]",
                             message.getTopic(), message.getMsgID(), e.getMessage());
                     logger.error(e.getMessage(), e);
                     return Action.ReconsumeLater;
                 }
             });
-
         } catch (Exception e) {
             logger.error("create and start RocketMQ receiver failed", e);
             return false;
