@@ -22,10 +22,10 @@ import java.util.concurrent.TimeoutException;
 /**
  * Rabbit consumer source
  *
- * @author zhongshengwang
+ * @author dick
  * @description TODO
  * @date 2021/12/25 10:56 下午
- * @email zhongshengwang@shuwen.com
+ * @email 18668485565@163.com
  */
 
 public class RabbitConsumerSource extends Source {

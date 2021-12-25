@@ -13,7 +13,7 @@ import java.security.NoSuchAlgorithmException;
  * RAM 角色会用到
  * 阿里云UserName、Password生成类（动态变化）。
  *
- * @author zhongshengwang
+ * @author dick
  */
 public class AliyunCredentialsProvider implements CredentialsProvider {
 
