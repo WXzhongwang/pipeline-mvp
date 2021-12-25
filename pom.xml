@@ -46,7 +46,9 @@
 
 
         <ons.client.version>1.8.0.Final</ons.client.version>
-        <rabbit.version>5.2.0</rabbit.version>
+        <rabbit.version>5.5.0</rabbit.version>
+        <rabbit-ali.version>1.0.5</rabbit-ali.version>
+        <tablestore.version>5.4.0</tablestore.version>
     </properties>
 
     <dependencyManagement>
@@ -213,6 +215,18 @@
                 <groupId>com.rabbitmq</groupId>
                 <artifactId>amqp-client</artifactId>
                 <version>${rabbit.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.mq-amqp</groupId>
+                <artifactId>mq-amqp-client</artifactId>
+                <version>${rabbit-ali.version}</version>
+            </dependency>
+
+            <!--TableStore表格存储-->
+            <dependency>
+                <groupId>com.aliyun.openservices</groupId>
+                <artifactId>tablestore</artifactId>
+                <version>${tablestore.version}</version>
             </dependency>
 
         </dependencies>

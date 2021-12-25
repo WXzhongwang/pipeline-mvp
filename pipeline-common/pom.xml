@@ -41,6 +41,10 @@
             <artifactId>amqp-client</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.alibaba.mq-amqp</groupId>
+            <artifactId>mq-amqp-client</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.github.rholder</groupId>
             <artifactId>guava-retrying</artifactId>
         </dependency>
