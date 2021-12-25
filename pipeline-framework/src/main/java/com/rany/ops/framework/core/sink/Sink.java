@@ -49,7 +49,7 @@ public abstract class Sink extends AbstractSink<KvRecord, KvRecord> {
         try {
             super.execute(input);
         } catch (Exception ex) {
-            logger.warn("sink [{}] occur an exception......", this.getName(), ex);
+            logger.warn("sink [{}] occur an exception......", this.name, ex);
             JSONArray array = (JSONArray) input.get(LoggerKeys.SLS_PROCESS_PLUGINS);
             String exceptionOne = (String) array.get(array.size() - 1);
             input.put(LoggerKeys.SLS_EXCEPTION_PLUGIN, exceptionOne);

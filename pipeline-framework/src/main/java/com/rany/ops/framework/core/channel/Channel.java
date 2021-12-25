@@ -8,8 +8,6 @@ import com.rany.ops.framework.log.Log;
 import com.rany.ops.framework.log.LoggerKeys;
 import org.apache.commons.collections.CollectionUtils;
 
-import java.util.Set;
-
 /**
  * @author dick
  * @description TODO
@@ -21,18 +19,6 @@ public abstract class Channel extends AbstractChannel<KvRecord, KvRecord> {
 
     protected Channel(String name) {
         super(name);
-    }
-
-    protected static ThreadLocal<Long> processTime = new ThreadLocal<>();
-
-    protected Set<String> nextProcessors;
-
-    public Set<String> getNextProcessors() {
-        return nextProcessors;
-    }
-
-    public void setNextProcessors(Set<String> nextProcessors) {
-        this.nextProcessors = nextProcessors;
     }
 
     @Override
@@ -62,7 +48,7 @@ public abstract class Channel extends AbstractChannel<KvRecord, KvRecord> {
         try {
             super.execute(input);
         } catch (Exception ex) {
-            logger.warn("channel [{}] occur an exception......", this.getName(), ex);
+            logger.warn("channel [{}] occur an exception......", this.name, ex);
             JSONArray array = (JSONArray) input.get(LoggerKeys.SLS_PROCESS_PLUGINS);
             String exceptionOne = (String) array.get(array.size() - 1);
             input.put(LoggerKeys.SLS_EXCEPTION_PLUGIN, exceptionOne);

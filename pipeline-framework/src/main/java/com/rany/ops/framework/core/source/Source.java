@@ -2,6 +2,7 @@ package com.rany.ops.framework.core.source;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.rany.ops.framework.core.MessageConvertor;
 import com.rany.ops.framework.kv.KvRecord;
 import com.rany.ops.framework.log.Log;
 import com.rany.ops.framework.log.LoggerKeys;
@@ -19,8 +20,6 @@ public abstract class Source extends AbstractSource<KvRecord, KvRecord> {
     protected Source(String name) {
         super(name);
     }
-
-    protected static ThreadLocal<Long> processTime = new ThreadLocal<>();
 
     protected MessageConvertor convertor;
 
@@ -47,7 +46,7 @@ public abstract class Source extends AbstractSource<KvRecord, KvRecord> {
             // 失败异常捕捉
             super.execute(input);
         } catch (Exception ex) {
-            logger.warn("source [{}] occur an exception......", this.getName(), ex);
+            logger.warn("source [{}] occur an exception......", this.name, ex);
             if (!input.has(LoggerKeys.SLS_PROCESS_PLUGINS)) {
                 input.put(LoggerKeys.SLS_PROCESS_PLUGINS, new JSONArray());
             }

@@ -1,4 +1,4 @@
-package com.rany.ops.framework.core.source;
+package com.rany.ops.framework.core;
 
 import com.rany.ops.framework.kv.KvRecords;
 import org.slf4j.Logger;

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * 组件抽象
@@ -21,21 +22,30 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
 
     protected final static Logger logger = LoggerFactory.getLogger(AbstractComponent.class);
 
+    protected AbstractComponent(String name) {
+        this.name = name;
+    }
+
+    protected ThreadLocal<Long> processTime = new ThreadLocal<>();
+    protected ThreadLocal<Long> errorCount = new ThreadLocal<>();
+
     protected volatile SlsConfig slsConfig;
-
-    private volatile Collection<Component> next = new ArrayList<>();
-
-    private volatile Component prev;
-
+    protected volatile Collection<Component> next = new ArrayList<>();
+    protected volatile Component prev;
     protected volatile String name;
+    protected volatile Set<String> nextProcessors;
+
+    public Set<String> getNextProcessors() {
+        return nextProcessors;
+    }
+
+    public void setNextProcessors(Set<String> nextProcessors) {
+        this.nextProcessors = nextProcessors;
+    }
 
     @Override
     public String getName() {
         return name;
-    }
-
-    protected AbstractComponent(String name) {
-        this.name = name;
     }
 
     @Override
@@ -61,7 +71,7 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
     public void execute(T input) {
         before(input);
         // 当前组件执行
-        logger.info("[{}] is executing......", this.getName());
+        logger.info("[{}] is executing......", this.name);
         R r = doExecute(input);
         after(r);
         // 单个component执行完毕
@@ -74,7 +84,7 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
                 downStream.execute(newR);
             }
         }
-        logger.info("[{}] execute success......", this.getName());
+        logger.info("[{}] execute success......", this.name);
     }
 
     @Override
@@ -98,12 +108,12 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
     @Override
     public boolean start() {
         // 下游 -> 上游 依次启动
-        logger.info("[{}] is ready to start......", this.getName());
+        logger.info("[{}] is ready to start......", this.name);
         Collection<Component> downStreams = getNext();
         if (!CollectionUtils.isEmpty(downStreams)) {
             downStreams.forEach(Component::start);
         }
-        logger.info("[{}] start success......", this.getName());
+        logger.info("[{}] start success......", this.name);
         return true;
     }
 
@@ -115,12 +125,12 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
     @Override
     public boolean stop() {
         // 上游 -> 下游 依次关闭
-        logger.info("[{}] is ready to shutdown......", this.getName());
+        logger.info("[{}] is ready to shutdown......", this.name);
         Collection<Component> downStreams = getNext();
         if (!CollectionUtils.isEmpty(downStreams)) {
             downStreams.forEach(Component::stop);
         }
-        logger.info("[{}] shutdown success......", this.getName());
+        logger.info("[{}] shutdown success......", this.name);
         return true;
     }
 }

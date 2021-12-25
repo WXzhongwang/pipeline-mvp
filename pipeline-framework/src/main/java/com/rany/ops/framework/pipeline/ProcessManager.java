@@ -9,9 +9,9 @@ import com.rany.ops.framework.config.ProcessorConfig;
 import com.rany.ops.framework.config.SlsConfig;
 import com.rany.ops.framework.config.SourceProcessorConfig;
 import com.rany.ops.framework.core.AbstractComponent;
+import com.rany.ops.framework.core.MessageConvertor;
 import com.rany.ops.framework.core.channel.Channel;
 import com.rany.ops.framework.core.sink.Sink;
-import com.rany.ops.framework.core.source.MessageConvertor;
 import com.rany.ops.framework.core.source.Source;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
@@ -195,7 +195,7 @@ public class ProcessManager {
             ResDependencyInjector.inject(source);
             sourceMap.put(sourceName, source);
             logger.info("source [{}] has finished init", sourceName);
-            
+
             // build chain
             if (!setSourceDownStream(source, sourceConfig.getNext())) {
                 logger.info("source [{}] chain reference chain build failed", sourceName);

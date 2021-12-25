@@ -82,7 +82,7 @@ public class RocketConsumerSource extends Source {
     }
 
     @Override
-    public boolean start() {
+    public boolean run() {
         logger.info("RocketMQ receiver is starting ...");
         consumer.start();
         logger.info("RocketMQ receiver start success ...");
