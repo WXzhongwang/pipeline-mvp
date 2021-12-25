@@ -14,5 +14,5 @@ public interface Bootable {
      *
      * @return
      */
-    boolean start();
+    boolean run();
 }

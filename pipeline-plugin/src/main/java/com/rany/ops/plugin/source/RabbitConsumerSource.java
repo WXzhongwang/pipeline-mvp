@@ -82,7 +82,7 @@ public class RabbitConsumerSource extends Source {
     }
 
     @Override
-    public boolean start() {
+    public boolean run() {
         // 开始消费消息。
         try {
             channel.basicConsume(properties.getQueueName(), false, properties.getConsumeTag(), new DefaultConsumer(channel) {

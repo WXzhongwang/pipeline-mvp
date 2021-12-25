@@ -42,9 +42,9 @@ public class FakeSource extends Source {
     }
 
     @Override
-    public boolean start() {
+    public boolean run() {
         logger.info("start fake source...");
-        thread = new Thread(this::run, "face source thread");
+        thread = new Thread(this::work, "face source thread");
         thread.start();
         logger.info("start fake source success...");
         return true;
@@ -67,7 +67,7 @@ public class FakeSource extends Source {
         return super.stop();
     }
 
-    private void run() {
+    private void work() {
         running = true;
         while (running) {
             KvRecords kvRecords = new KvRecords();
