@@ -12,4 +12,5 @@ public final class Constants {
     public static final String SYSTEM_NAME = "pipeline";
 
     public static final String INTERNAL_KEY_MESSAGE_ID = "input_message_id";
+    public static final String INTERNAL_KEY_DELIVERY_TAG = "delivery_tag";
 }

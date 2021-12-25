@@ -16,10 +16,17 @@ public class RabbitProducerProperties {
     private static final Logger logger = LoggerFactory.getLogger(RabbitProducerProperties.class);
 
     private String host;
-    private int port;
+    /**
+     * 默认端口。非加密端口为5672，加密端口为5671。
+     */
+    private int port = 5672;
     private String username;
     private String password;
     private String virtualHost;
+    private String exchangeName;
+    private String exchangeType;
+    private String queueName;
+    private String bindingKey;
 
     public String getHost() {
         return host;
@@ -59,6 +66,38 @@ public class RabbitProducerProperties {
 
     public void setVirtualHost(String virtualHost) {
         this.virtualHost = virtualHost;
+    }
+
+    public String getExchangeName() {
+        return exchangeName;
+    }
+
+    public void setExchangeName(String exchangeName) {
+        this.exchangeName = exchangeName;
+    }
+
+    public String getExchangeType() {
+        return exchangeType;
+    }
+
+    public void setExchangeType(String exchangeType) {
+        this.exchangeType = exchangeType;
+    }
+
+    public String getQueueName() {
+        return queueName;
+    }
+
+    public void setQueueName(String queueName) {
+        this.queueName = queueName;
+    }
+
+    public String getBindingKey() {
+        return bindingKey;
+    }
+
+    public void setBindingKey(String bindingKey) {
+        this.bindingKey = bindingKey;
     }
 
     public boolean validate() {

@@ -64,7 +64,7 @@ public class RocketConsumerSource extends Source {
                     KvRecords kvRecords = convertor.convert(message);
                     for (int i = 0; i < kvRecords.getRecordCnt(); i++) {
                         KvRecord record = kvRecords.getRecord(i);
-                        this.execute(record.copy());
+                        execute(record.copy());
                     }
                     return Action.CommitMessage;
                 } catch (Throwable e) {
