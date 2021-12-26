@@ -1,5 +1,6 @@
 package com.rany.ops.framework.pipeline;
 
+import com.google.common.collect.Sets;
 import com.rany.ops.common.reflection.ReflectClass;
 import com.rany.ops.common.reflection.ReflectUtil;
 import com.rany.ops.framework.annotation.ResDependencyInjector;
@@ -237,8 +238,8 @@ public class ProcessManager {
             logger.error("source [{}] have no downstream channel or sink", source.getName());
             return false;
         }
+        // 不能依赖自己
         for (String nextProcessor : next) {
-            // 不能依赖自己
             if (nextProcessor.equals(source.getName())) {
                 logger.error("can not set the downstream as yourself, component name [{}]", nextProcessor);
                 return false;
@@ -257,6 +258,7 @@ public class ProcessManager {
 
     private boolean setDownStream(AbstractComponent component, Set<String> next, Set<String> processSet) {
         for (String nextProcessor : next) {
+            Set<String> copySet = Sets.newHashSet(processSet);
             // 不能依赖自己
             if (nextProcessor.equals(component.getName())) {
                 logger.error("can not set the downstream as yourself, component name [{}]", nextProcessor);
@@ -264,13 +266,13 @@ public class ProcessManager {
             }
             if (channelMap.containsKey(nextProcessor)) {
                 Channel channel = channelMap.get(nextProcessor);
-                if (!checkLoopReference(channel, processSet)) {
+                if (!checkLoopReference(channel, copySet)) {
                     logger.error("check loop failed, current component [{}]", component.getName());
                     return false;
                 }
                 component.addNext(channel);
                 channel.setPrev(component);
-                if (!setDownStream(channel, channel.getNextProcessors(), processSet)) {
+                if (!setDownStream(channel, channel.getNextProcessors(), copySet)) {
                     logger.error("set downstream failed, component name [{}]", channel.getName());
                     return false;
                 }
