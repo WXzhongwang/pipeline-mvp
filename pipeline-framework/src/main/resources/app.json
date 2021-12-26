@@ -24,16 +24,42 @@
           "timeIntervalMs": 3000
         },
         "next": [
-          "fake_channel"
+          "A",
+          "C"
         ]
       }
     ],
     "channels": [
       {
-        "name": "fake_channel",
+        "name": "A",
         "className": "com.rany.ops.framework.core.channel.DummyChannel",
         "config": {},
-        "next": []
+        "next": [
+          "B"
+        ]
+      },
+      {
+        "name": "B",
+        "className": "com.rany.ops.framework.core.channel.DummyChannel",
+        "config": {},
+        "next": [
+          "C"
+        ]
+      },
+      {
+        "name": "C",
+        "className": "com.rany.ops.framework.core.channel.DummyChannel",
+        "config": {},
+        "next": [
+          "D"
+        ]
+      },
+      {
+        "name": "D",
+        "className": "com.rany.ops.framework.core.channel.DummyChannel",
+        "config": {},
+        "next": [
+        ]
       }
     ],
     "sinks": [

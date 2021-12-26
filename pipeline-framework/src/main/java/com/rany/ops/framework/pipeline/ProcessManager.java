@@ -21,8 +21,8 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -203,7 +203,7 @@ public class ProcessManager {
 
             // build chain
             if (!setSourceDownStream(source, sourceConfig.getNext())) {
-                logger.info("source [{}] chain reference chain build failed", sourceName);
+                logger.info("source [{}] build reference chain failed", sourceName);
                 return false;
             }
         }
@@ -246,7 +246,7 @@ public class ProcessManager {
             }
         }
 
-        Set<String> processSet = new HashSet<>();
+        Set<String> processSet = new LinkedHashSet<>();
         processSet.add(source.getName());
         if (!setDownStream(source, next, processSet)) {
             logger.error("set downstream failed, source name [{}]", source.getName());
@@ -258,13 +258,18 @@ public class ProcessManager {
 
     private boolean setDownStream(AbstractComponent component, Set<String> next, Set<String> processSet) {
         for (String nextProcessor : next) {
-            Set<String> copySet = Sets.newHashSet(processSet);
+            Set<String> copySet = Sets.newLinkedHashSet(processSet);
             // 不能依赖自己
             if (nextProcessor.equals(component.getName())) {
                 logger.error("can not set the downstream as yourself, component name [{}]", nextProcessor);
                 return false;
             }
             if (channelMap.containsKey(nextProcessor)) {
+                if (processSet.contains(nextProcessor)) {
+                    logger.error("check loop failed, component name [{}]", nextProcessor);
+                    return false;
+                }
+                copySet.add(nextProcessor);
                 Channel channel = channelMap.get(nextProcessor);
                 if (!checkLoopReference(channel, copySet)) {
                     logger.error("check loop failed, current component [{}]", component.getName());
@@ -289,17 +294,18 @@ public class ProcessManager {
         return true;
     }
 
-    private boolean checkLoopReference(AbstractComponent component, Set<String> components) {
+    private boolean checkLoopReference(AbstractComponent component, Set<String> copySets) {
         Collection<AbstractComponent> next = component.getNext();
         Iterator<AbstractComponent> iterator = next.iterator();
         while (iterator.hasNext()) {
+            Set<String> newReferenceSet = Sets.newLinkedHashSet(copySets);
             AbstractComponent nextComponent = iterator.next();
-            if (components.contains(component.getName())) {
+            if (newReferenceSet.contains(nextComponent.getName())) {
                 logger.error("exist loop reference, component name [{}]", component.getName());
                 return false;
             }
-            components.add(nextComponent.getName());
-            if (!checkLoopReference(nextComponent, components)) {
+            newReferenceSet.add(nextComponent.getName());
+            if (!checkLoopReference(nextComponent, newReferenceSet)) {
                 return false;
             }
         }
