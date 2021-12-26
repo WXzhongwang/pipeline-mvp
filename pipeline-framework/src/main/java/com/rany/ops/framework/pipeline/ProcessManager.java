@@ -28,8 +28,10 @@ import java.util.Objects;
 import java.util.Set;
 
 /**
+ * process manager
+ *
  * @author dick
- * @description TODO
+ * @description process 统一管理
  * @date 2021/12/21 10:00 下午
  * @email 18668485565@163.com
  */
@@ -51,11 +53,13 @@ public class ProcessManager {
 
     public boolean init(final ProcessConfig process, final SlsConfig slsConfig) {
         logger.info("processor manager is init ...");
-        if (Objects.nonNull(process)) {
-            if (CollectionUtils.isEmpty(process.getSources())) {
-                logger.error("no source configured");
-                return false;
-            }
+        if (Objects.isNull(process)) {
+            logger.error("process config can not be null");
+            return false;
+        }
+        if (CollectionUtils.isEmpty(process.getSources())) {
+            logger.error("no source configured");
+            return false;
         }
         if (Objects.isNull(slsConfig)) {
             logger.error("no sls config");
@@ -228,7 +232,6 @@ public class ProcessManager {
         return true;
     }
 
-
     private boolean setSourceDownStream(Source source, Set<String> next) {
         if (CollectionUtils.isEmpty(next)) {
             logger.error("source [{}] have no downstream channel or sink", source.getName());
@@ -240,13 +243,15 @@ public class ProcessManager {
                 logger.error("can not set the downstream as yourself, component name [{}]", nextProcessor);
                 return false;
             }
-            Set<String> processSet = new HashSet<>();
-            processSet.add(source.getName());
-            if (!setDownStream(source, next, processSet)) {
-                logger.error("set downstream failed, source name [{}]", source.getName());
-                return false;
-            }
         }
+
+        Set<String> processSet = new HashSet<>();
+        processSet.add(source.getName());
+        if (!setDownStream(source, next, processSet)) {
+            logger.error("set downstream failed, source name [{}]", source.getName());
+            return false;
+        }
+
         return true;
     }
 
@@ -287,7 +292,7 @@ public class ProcessManager {
         Iterator<AbstractComponent> iterator = next.iterator();
         while (iterator.hasNext()) {
             AbstractComponent nextComponent = iterator.next();
-            if (components.contains(component)) {
+            if (components.contains(component.getName())) {
                 logger.error("exist loop reference, component name [{}]", component.getName());
                 return false;
             }
