@@ -34,8 +34,8 @@ public class DummyChannel extends Channel {
 
     @Override
     public boolean init(Map<String, Object> config) {
-        logger.info("dummy channel is init ...");
-        logger.info("dummy channel has finished init");
+        logger.info("[{}] is init ...", name);
+        logger.info("[{}] has finished init", name);
         return true;
     }
 }

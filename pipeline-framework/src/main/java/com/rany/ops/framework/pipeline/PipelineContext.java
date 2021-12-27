@@ -45,7 +45,7 @@ public class PipelineContext implements IPipelineLifeCycle {
 
     @Override
     public boolean prepare() {
-        logger.info("multiple pipe line context start to prepare...");
+        logger.info("multiple pipe line context is ready to prepare...");
         processManager = new ProcessManager();
         if (!processManager.init(process, slsConfig)) {
             logger.info("process manager init failed...");
@@ -65,7 +65,7 @@ public class PipelineContext implements IPipelineLifeCycle {
         for (Pipeline pipeline : pipelines) {
             // 开启管道
             if (!pipeline.open()) {
-                logger.error("source [{}] start failed...", pipeline.source.getName());
+                logger.error("source [{}] open failed...", pipeline.source.getName());
                 return false;
             }
         }

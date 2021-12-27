@@ -29,7 +29,7 @@ public class Bootstrap {
     }
 
     public boolean init() {
-        logger.info("pipeline app [{}] admin center start to init...", config.getApp().getName());
+        logger.info("pipeline app [{}] bootstrap start to init...", config.getApp().getName());
         // 资源注册
         for (ResourceConfig resourceConfig : config.getResourceConfigList()) {
             if (ResourceManager.hasResource(resourceConfig.getName())) {
@@ -50,7 +50,7 @@ public class Bootstrap {
             logger.info("context prepare failed...");
             return false;
         }
-        logger.info("pipeline app [{}] admin center start success...", config.getApp().getName());
+        logger.info("pipeline app [{}] bootstrap init success...", config.getApp().getName());
         return true;
     }
 

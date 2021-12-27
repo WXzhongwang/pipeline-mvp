@@ -33,7 +33,7 @@ public abstract class Pipeline implements IPipelineLifeCycle {
         boolean startUp = source.start();
         if (startUp) {
             if (!source.run()) {
-                logger.error("source [{}] bootstrap failed", source.getName());
+                logger.error("source [{}] open failed", source.getName());
                 return false;
             }
         }
