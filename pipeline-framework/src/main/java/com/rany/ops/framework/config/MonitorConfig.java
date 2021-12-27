@@ -16,7 +16,7 @@ public class MonitorConfig implements Serializable {
     private boolean enable;
     private String dingTalkUrl;
     private String dingTalkSecret;
-    private String alertName;
+    private String mobiles;
 
     public boolean isEnable() {
         return enable;
@@ -42,11 +42,11 @@ public class MonitorConfig implements Serializable {
         this.dingTalkSecret = dingTalkSecret;
     }
 
-    public String getAlertName() {
-        return alertName;
+    public String getMobiles() {
+        return mobiles;
     }
 
-    public void setAlertName(String alertName) {
-        this.alertName = alertName;
+    public void setMobiles(String mobiles) {
+        this.mobiles = mobiles;
     }
 }
