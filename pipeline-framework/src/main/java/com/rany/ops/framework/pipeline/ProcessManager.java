@@ -10,6 +10,7 @@ import com.rany.ops.framework.config.ProcessorConfig;
 import com.rany.ops.framework.config.SlsConfig;
 import com.rany.ops.framework.config.SourceProcessorConfig;
 import com.rany.ops.framework.core.AbstractComponent;
+import com.rany.ops.framework.core.Component;
 import com.rany.ops.framework.core.MessageConvertor;
 import com.rany.ops.framework.core.channel.Channel;
 import com.rany.ops.framework.core.sink.Sink;
@@ -27,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * process manager
@@ -264,6 +266,15 @@ public class ProcessManager {
                 logger.error("can not set the downstream as yourself, component name [{}]", nextProcessor);
                 return false;
             }
+
+            if (CollectionUtils.isNotEmpty(component.getNext())) {
+                Collection<Component> components = component.getNext();
+                Set<String> names = components.stream().map(Component::getName).collect(Collectors.toSet());
+                if (names.contains(nextProcessor)) {
+                    continue;
+                }
+            }
+
             if (channelMap.containsKey(nextProcessor)) {
                 if (processSet.contains(nextProcessor)) {
                     logger.error("check loop failed, component name [{}]", nextProcessor);
