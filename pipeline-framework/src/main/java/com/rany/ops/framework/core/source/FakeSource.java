@@ -43,16 +43,15 @@ public class FakeSource extends Source {
 
     @Override
     public boolean run() {
-        logger.info("start fake source...");
+        logger.info("[{}] fake source is ready to start...", name);
         thread = new Thread(this::work, "face source thread");
         thread.start();
-        logger.info("start fake source success...");
+        logger.info("[{}] fake source start success...", name);
         return true;
     }
 
     @Override
     public boolean stop() {
-        logger.info("fake source is stopping ...");
         running = false;
         if (thread != null) {
             thread.interrupt();

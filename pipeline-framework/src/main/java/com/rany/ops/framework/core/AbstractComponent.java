@@ -31,7 +31,7 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
 
     protected volatile SlsConfig slsConfig;
     protected volatile Collection<Component> next = new ArrayList<>();
-    protected volatile Component prev;
+    protected volatile Collection<Component> prev = new ArrayList<>();
     protected volatile String name;
     protected volatile Set<String> nextProcessors;
 
@@ -54,13 +54,8 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
     }
 
     @Override
-    public Component getPrev() {
+    public Collection<Component> getPrev() {
         return prev;
-    }
-
-    @Override
-    public void setPrev(Component prev) {
-        this.prev = prev;
     }
 
     public void setSlsConfig(SlsConfig slsConfig) {
@@ -90,6 +85,11 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
     @Override
     public void addNext(Component next) {
         this.next.add(next);
+    }
+
+    @Override
+    public void addPrev(Component prev) {
+        this.prev.add(prev);
     }
 
     /**

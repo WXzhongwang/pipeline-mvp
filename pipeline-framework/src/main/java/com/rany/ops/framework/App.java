@@ -83,7 +83,6 @@ public class App {
                 if (!bootstrap.shutdown()) {
                     logger.error("stop pipeline app scheduler[{}] failed", name);
                 }
-                bootstrap.shutdown();
                 activate();
             }));
             if (!bootstrap.startUp()) {

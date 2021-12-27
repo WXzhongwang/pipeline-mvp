@@ -116,6 +116,7 @@ public class ProcessManager {
                 logger.error("sink [{}]  init failed", sinkName);
                 return false;
             }
+            sink.setNextProcessors(sinkConfig.getNext());
             sink.setSlsConfig(slsConfig);
 
             // resource inject
@@ -198,6 +199,7 @@ public class ProcessManager {
                 return false;
             }
             source.setSlsConfig(slsConfig);
+            source.setNextProcessors(sourceConfig.getNext());
             // resource inject
             ResDependencyInjector.inject(source);
             sourceMap.put(sourceName, source);
@@ -287,7 +289,7 @@ public class ProcessManager {
                     return false;
                 }
                 component.addNext(channel);
-                channel.setPrev(component);
+                channel.addPrev(component);
                 if (!setDownStream(channel, channel.getNextProcessors(), copySet)) {
                     logger.error("set downstream failed, component name [{}]", channel.getName());
                     return false;
@@ -296,7 +298,7 @@ public class ProcessManager {
                 // sink 是结束，不会再有下一个
                 Sink sink = sinkMap.get(nextProcessor);
                 component.addNext(sink);
-                sink.setPrev(component);
+                sink.addPrev(component);
             } else {
                 logger.error("not found downstream component, component name [{}]", nextProcessor);
                 return false;

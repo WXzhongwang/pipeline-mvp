@@ -33,7 +33,7 @@ public interface Component<T, R> extends LifeCycle {
      *
      * @return
      */
-    Component getPrev();
+    Collection<Component> getPrev();
 
 
     /**
@@ -44,12 +44,11 @@ public interface Component<T, R> extends LifeCycle {
     void addNext(Component next);
 
     /**
-     * 设置前置节点
+     * 添加设置前置节点
      *
      * @param prev
      */
-    void setPrev(Component prev);
-
+    void addPrev(Component prev);
 
     /**
      * 执行
