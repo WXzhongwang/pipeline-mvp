@@ -19,6 +19,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -41,7 +42,7 @@ public class MonitorManager {
     private static final ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
     private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-    public static final ConcurrentLinkedQueue<Alarm> queue = new ConcurrentLinkedQueue<>();
+    public static final Queue<Alarm> queue = new ConcurrentLinkedQueue<>();
     /**
      * 告警配置
      */
