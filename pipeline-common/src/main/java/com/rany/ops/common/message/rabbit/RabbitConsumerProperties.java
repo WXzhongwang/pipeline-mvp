@@ -5,8 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
+ * RabbitConsumerProperties
+ *
  * @author dick
- * @description TODO
+ * @description RabbitConsumerProperties
  * @date 2021/12/24 10:35 下午
  * @email 18668485565@163.com
  */

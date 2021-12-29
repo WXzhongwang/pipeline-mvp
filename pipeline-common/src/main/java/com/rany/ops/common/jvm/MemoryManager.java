@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  */
 public class MemoryManager {
 
-    private final static Logger logger = LoggerFactory.getLogger(MemoryManager.class);
+    private static final Logger logger = LoggerFactory.getLogger(MemoryManager.class);
 
     private volatile long lastFullGCTimestamp;
 

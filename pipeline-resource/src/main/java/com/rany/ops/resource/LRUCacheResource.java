@@ -17,10 +17,10 @@ import java.util.Map;
  */
 public class LRUCacheResource extends Resource<LRUCache> {
 
-    private final static Logger logger = LoggerFactory.getLogger(LRUCacheResource.class);
+    private static final Logger logger = LoggerFactory.getLogger(LRUCacheResource.class);
 
-    private final static String KEY_CACHE_SIZE = "cacheSize";
-    private final static String KEY_EXPIRED_TIME_MINUTES = "expiredTimeMinutes";
+    private static final String KEY_CACHE_SIZE = "cacheSize";
+    private static final String KEY_EXPIRED_TIME_MINUTES = "expiredTimeMinutes";
 
     public LRUCacheResource(String name) {
         super(name);

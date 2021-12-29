@@ -18,9 +18,9 @@ import java.util.concurrent.TimeUnit;
  */
 public class LRUCache {
 
-    private final static Logger logger = LoggerFactory.getLogger(LRUCache.class);
+    private static final Logger logger = LoggerFactory.getLogger(LRUCache.class);
 
-    private final static int DEFAULT_CACHE_SIZE = 100;
+    private static final int DEFAULT_CACHE_SIZE = 100;
 
     private Cache<String, Object> cache;
     private RemovalListener<String, Object> removalListener;
@@ -74,7 +74,7 @@ public class LRUCache {
      */
     public void evict(String key) {
         if (key == null) {
-            logger.error("key[null] is not allowed");
+            logger.error("key [null] is not allowed");
             return;
         }
         cache.invalidate(key);

@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class KvRecords implements Serializable {
 
-    private final static Logger logger = LoggerFactory.getLogger(KvRecords.class);
+    private static final Logger logger = LoggerFactory.getLogger(KvRecords.class);
 
     private List<KvRecord> kvRecords;
 

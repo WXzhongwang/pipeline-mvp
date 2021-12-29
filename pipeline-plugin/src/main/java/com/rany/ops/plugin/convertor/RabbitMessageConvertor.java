@@ -42,6 +42,7 @@ public class RabbitMessageConvertor extends MessageConvertor {
 
     @Override
     public KvRecords convert(Object object) {
+        assert object != null;
         JSONObject message = (JSONObject) object;
         if (message == null) {
             logger.error("message object type[{}] is not expected type[{}], discard this message",

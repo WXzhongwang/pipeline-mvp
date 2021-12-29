@@ -17,14 +17,14 @@ import java.util.Map;
  * 数据抽象, 用于pipeline中数据扭转
  *
  * @author dick
- * @description TODO
+ * @description 用于pipeline中数据扭转
  * @date 2021/12/17 8:23 下午
  * @email 18668485565@163.com
  */
 
 public class KvRecord implements Serializable {
 
-    private final static Logger logger = LoggerFactory.getLogger(KvRecord.class);
+    private static final Logger logger = LoggerFactory.getLogger(KvRecord.class);
 
     public KvRecord() {
         fieldMap = new HashMap<>();

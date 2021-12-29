@@ -20,7 +20,7 @@ import java.util.Set;
  */
 public abstract class AbstractComponent<T, R> implements Component<T, R> {
 
-    protected final static Logger logger = LoggerFactory.getLogger(AbstractComponent.class);
+    protected static final Logger logger = LoggerFactory.getLogger(AbstractComponent.class);
 
     protected AbstractComponent(String name) {
         this.name = name;

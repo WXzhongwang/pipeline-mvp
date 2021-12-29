@@ -9,7 +9,7 @@ import com.rany.ops.framework.kv.KvRecord;
 import com.rany.ops.framework.kv.KvRecords;
 import org.apache.commons.lang3.StringUtils;
 
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
 /**
@@ -53,7 +53,7 @@ public class JsonMessageConvertor extends MessageConvertor {
                     object.getClass().getName(), Message.class.getName());
             return null;
         }
-        String content = new String(message.getBody(), Charset.forName("UTF-8"));
+        String content = new String(message.getBody(), StandardCharsets.UTF_8);
         JSONObject messageObject = JSON.parseObject(content);
         KvRecord kvRecord = new KvRecord();
         for (Map.Entry<String, Object> entry : messageObject.entrySet()) {

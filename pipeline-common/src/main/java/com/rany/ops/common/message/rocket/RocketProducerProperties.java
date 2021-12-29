@@ -19,8 +19,8 @@ public class RocketProducerProperties implements Serializable {
 
     private static final Logger logger = LoggerFactory.getLogger(RocketProducerProperties.class);
 
-    private final static int DEFAULT_RETRY_CNT = 3;
-    private final static int DEFAULT_REQUEST_TIMEOUT_MS = 3000;
+    private static final int DEFAULT_RETRY_CNT = 3;
+    private static final int DEFAULT_REQUEST_TIMEOUT_MS = 3000;
 
     private int retryCnt = DEFAULT_RETRY_CNT;
     private int requestTimeout = DEFAULT_REQUEST_TIMEOUT_MS;

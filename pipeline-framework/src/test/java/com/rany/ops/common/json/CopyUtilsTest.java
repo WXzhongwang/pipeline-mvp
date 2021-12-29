@@ -12,6 +12,6 @@ public class CopyUtilsTest {
         kvRecord.put("a", "a");
         KvRecord newRecord = CopyUtils.deepCopy(kvRecord);
         System.out.println(newRecord);
-        Assert.assertTrue("深拷贝", !kvRecord.equals(newRecord));
+        Assert.assertNotEquals(kvRecord, newRecord);
     }
 }
