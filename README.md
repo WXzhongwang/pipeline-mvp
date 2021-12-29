@@ -12,7 +12,7 @@ Flume:
 
 从图中可以看出，整个流水线内数据流转是从上游到下游，上游的输出是下游的输入，按阶段依次执行。
 
-- Source: 表示数据来源，比如：KafkaSource。
+- Source: 表示数据来源，比如：RcoketSource、 RabbitSource, KafkaSource， HttpSource等。
 - Channel：表示对数据进行处理的组件，比如：JsonChannel，对数据进行json转换和处理。
 - Sink：表示数据落地或下沉的地方，比如：KafkaSink，表示数据发送到指定的kafka；DbSInk表示数据落地到DB。
 
