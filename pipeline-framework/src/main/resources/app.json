@@ -13,6 +13,9 @@
     "enable": "true",
     "dingTalkUrl": "",
     "dingTalkSecret": "",
+    "mobiles": [
+      "18668485565"
+    ],
     "alertName": "pipeline告警"
   },
   "process": {

@@ -1,6 +1,7 @@
 package com.rany.ops.framework.config;
 
 import java.io.Serializable;
+import java.util.Set;
 
 /**
  * 告警配置
@@ -16,7 +17,7 @@ public class MonitorConfig implements Serializable {
     private boolean enable;
     private String dingTalkUrl;
     private String dingTalkSecret;
-    private String mobiles;
+    private Set<String> mobiles;
 
     public boolean isEnable() {
         return enable;
@@ -42,11 +43,11 @@ public class MonitorConfig implements Serializable {
         this.dingTalkSecret = dingTalkSecret;
     }
 
-    public String getMobiles() {
+    public Set<String> getMobiles() {
         return mobiles;
     }
 
-    public void setMobiles(String mobiles) {
+    public void setMobiles(Set<String> mobiles) {
         this.mobiles = mobiles;
     }
 }

@@ -5,6 +5,7 @@ import com.rany.ops.common.alert.DingConstants;
 import com.rany.ops.common.alert.DingMsgRequest;
 import com.rany.ops.common.alert.DingUtils;
 import com.rany.ops.framework.config.MonitorConfig;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -122,22 +123,32 @@ public class MonitorManager {
         String content = startAlarm.getContent();
         Date startTime = lastAlarm.getTimestamp();
         Date endTime = startAlarm.getTimestamp();
-        String title = String.format("【%s】于%s 至 %s发生告警通知，等级【%s】",
-                appName, format.format(startTime), format.format(endTime), startAlarm.getType());
+        String title = String.format("【%s】应用异常监控", appName);
+        String contentHead = String.format("##【%s】告警，等级%s", appName, startAlarm.getType());
+        String contentTail = String.format("#### 告警时间：%s至%s", format.format(startTime), format.format(endTime));
         StringBuilder messageBuilder = new StringBuilder();
-        messageBuilder.append(title).append("\n");
-        messageBuilder.append(content).append("\n");
-        String times = String.format("合并报警次数: [%d]", size);
+        messageBuilder.append(contentHead).append("\n\n");
+        messageBuilder.append(content).append("\n\n");
+        messageBuilder.append(contentTail).append("\n\n");
+        String times = String.format("> 合并报警次数: [%d]", size);
         messageBuilder.append(times).append("\n");
 
+        if (CollectionUtils.isNotEmpty(monitorConfig.getMobiles())) {
+            for (String mobile : monitorConfig.getMobiles()) {
+                messageBuilder.append("@").append(mobile);
+            }
+            messageBuilder.append("\n");
+        }
+
         JSONObject request = new JSONObject();
-        request.put(DingConstants.DING_REQ_KEY_MSG_TYPE, DingConstants.DING_MSG_TYPE_TEXT);
-        JSONObject text = new JSONObject();
-        text.put(DingConstants.TEXT_REQ_KEY_CONTENT, messageBuilder.toString());
-        request.put(DingConstants.DING_REQ_KEY_TEXT, text);
-        request.put(DingConstants.TEXT_REQ_KEY_AT, new JSONObject()
-                .fluentPut(DingConstants.TEXT_REQ_KEY_AT_ALL, false)
-                .fluentPut(DingConstants.TEXT_REQ_KEY_AT_MOBILES, monitorConfig.getMobiles()));
+        request.put(DingConstants.DING_REQ_KEY_MSG_TYPE, DingConstants.DING_MSG_TYPE_MARKDOWN);
+        JSONObject markdown = new JSONObject();
+        request.put(DingConstants.DING_REQ_KEY_MARKDOWN, markdown);
+        markdown.put(DingConstants.MARKDOWN_REQ_KEY_TITLE, title);
+        markdown.put(DingConstants.MARKDOWN_REQ_KEY_TEXT, messageBuilder.toString());
+        request.put(DingConstants.MARKDOWN_REQ_KEY_AT, new JSONObject()
+                .fluentPut(DingConstants.MARKDOWN_REQ_KEY_AT_ALL, false)
+                .fluentPut(DingConstants.MARKDOWN_REQ_KEY_AT_MOBILES, monitorConfig.getMobiles()));
         return new DingMsgRequest(url, request);
     }
 }
