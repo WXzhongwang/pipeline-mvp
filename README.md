@@ -178,6 +178,23 @@ VM options:
 
 ![image](https://user-images.githubusercontent.com/27359059/147672416-0aa6c235-232b-405f-94ba-9e7d73983110.png)
 
+机器人接入：
+
+[钉钉自定义机器人](https://open.dingtalk.com/document/robots/custom-robot-access)
+
+需配置dingTalkUrl && dingTalkSecret 即可。
+
+```
+  "monitor": {
+    "enable": "true", #开关
+    "dingTalkUrl": "",
+    "dingTalkSecret": "",
+    "mobiles": [
+    "18668485565"
+    ],
+    "alertName": "pipeline告警"
+  }
+```
 
 
 
