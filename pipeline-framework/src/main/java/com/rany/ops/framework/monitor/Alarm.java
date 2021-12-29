@@ -17,9 +17,9 @@ import java.util.Date;
 
 public class Alarm implements Serializable {
 
-    public static final String ALERT_TYPE_INFO = "[通知]";
-    public static final String ALERT_TYPE_ERROR = "[错误]";
-    public static final String ALERT_TYPE_FATAL = "[严重]";
+    public static final String ALERT_TYPE_INFO = "【通知】";
+    public static final String ALERT_TYPE_ERROR = "【错误】";
+    public static final String ALERT_TYPE_FATAL = "【严重】";
 
     private String appName;
     private String type = ALERT_TYPE_INFO;
