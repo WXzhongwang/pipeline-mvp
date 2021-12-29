@@ -190,7 +190,7 @@ VM options:
     "dingTalkUrl": "",
     "dingTalkSecret": "",
     "mobiles": [
-    "18668485565"
+    "1866848xxxx"
     ],
     "alertName": "pipeline告警"
   }
