@@ -24,5 +24,9 @@
             <groupId>com.aliyun.openservices</groupId>
             <artifactId>ons-client</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.aliyun.openservices</groupId>
+            <artifactId>tablestore</artifactId>
+        </dependency>
     </dependencies>
 </project>

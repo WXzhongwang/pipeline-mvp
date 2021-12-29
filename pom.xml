@@ -132,7 +132,6 @@
                 <artifactId>slf4j-api</artifactId>
                 <version>${slf4j-api.version}</version>
             </dependency>
-
             <!--logback 日志实现-->
             <dependency>
                 <groupId>ch.qos.logback</groupId>
@@ -144,14 +143,6 @@
                 <artifactId>logback-classic</artifactId>
                 <version>${logback.version}</version>
             </dependency>
-
-            <!--            <dependency>-->
-            <!--                <groupId>net.logstash.logback</groupId>-->
-            <!--                <artifactId>logstash-logback-encoder</artifactId>-->
-            <!--                <version>6.5</version>-->
-            <!--            </dependency>-->
-
-
             <dependency>
                 <groupId>commons-collections</groupId>
                 <artifactId>commons-collections</artifactId>
@@ -167,7 +158,6 @@
                 <artifactId>commons-lang3</artifactId>
                 <version>${commons-lang3.version}</version>
             </dependency>
-
             <!-- 反射包 -->
             <dependency>
                 <groupId>org.reflections</groupId>
@@ -185,7 +175,7 @@
                 <artifactId>jmh-generator-annprocess</artifactId>
                 <version>${jmh.version}</version>
             </dependency>
-
+            <!--zk client-->
             <dependency>
                 <groupId>com.101tec</groupId>
                 <artifactId>zkclient</artifactId>
@@ -202,8 +192,6 @@
                 <artifactId>curator-recipes</artifactId>
                 <version>${curator.version}</version>
             </dependency>
-
-
             <!--RocketMQ-->
             <dependency>
                 <groupId>com.aliyun.openservices</groupId>
@@ -221,7 +209,6 @@
                 <artifactId>mq-amqp-client</artifactId>
                 <version>${rabbit-ali.version}</version>
             </dependency>
-
             <!--TableStore表格存储-->
             <dependency>
                 <groupId>com.aliyun.openservices</groupId>

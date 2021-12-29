@@ -15,7 +15,6 @@ import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -96,13 +95,7 @@ public class MonitorManager {
     }
 
     private List<DingMsgRequest> combineAlarms(List<Alarm> alarms) {
-        List<Alarm> collect = alarms.stream().sorted(new Comparator<Alarm>() {
-            @Override
-            public int compare(Alarm o1, Alarm o2) {
-                return o1.getTimestamp().before(o2.getTimestamp()) ? 1 : -1;
-            }
-        }).collect(Collectors.toList());
-
+        List<Alarm> collect = alarms.stream().sorted((o1, o2) -> o1.getTimestamp().before(o2.getTimestamp()) ? 1 : -1).collect(Collectors.toList());
         Map<String, List<Alarm>> alarmMap = new HashMap<>();
         for (Alarm alarm : collect) {
             String key = alarm.buildKey();
