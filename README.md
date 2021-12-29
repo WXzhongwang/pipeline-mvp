@@ -171,6 +171,12 @@ VM options:
 
 ```
 
+## 告警模板
+
+框架层面内置告警通知：
+
+![image](https://user-images.githubusercontent.com/27359059/147672416-0aa6c235-232b-405f-94ba-9e7d73983110.png)
+
 
 
 
