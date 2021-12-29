@@ -100,7 +100,8 @@ public class App {
             if (waitFlag) {
                 try {
                     waitObject.wait();
-                } catch (InterruptedException ignore) {
+                } catch (InterruptedException exception) {
+                    logger.warn("interrupted!", exception);
                 }
             }
         }

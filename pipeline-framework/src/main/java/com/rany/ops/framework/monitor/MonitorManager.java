@@ -12,6 +12,7 @@ import org.slf4j.LoggerFactory;
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -29,7 +30,7 @@ import java.util.stream.Collectors;
  * 告警
  *
  * @author dick
- * @description TODO
+ * @description 告警
  * @date 2021/12/25 11:47 下午
  * @email 18668485565@163.com
  */
@@ -38,9 +39,7 @@ public class MonitorManager {
 
     private static final Logger logger = LoggerFactory.getLogger(MonitorManager.class);
     private static final String HMAC_SHA256 = "HmacSHA256";
-    private static final String UTF8_ENCODING = "UTF-8";
     private static final ScheduledThreadPoolExecutor executor = new ScheduledThreadPoolExecutor(1);
-    private static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public static final Queue<Alarm> queue = new ConcurrentLinkedQueue<>();
     /**
@@ -61,9 +60,9 @@ public class MonitorManager {
         String sign = null;
         try {
             Mac mac = Mac.getInstance(HMAC_SHA256);
-            mac.init(new SecretKeySpec(monitorConfig.getDingTalkSecret().getBytes(UTF8_ENCODING), HMAC_SHA256));
-            byte[] signData = mac.doFinal(string.getBytes(UTF8_ENCODING));
-            sign = URLEncoder.encode(new String(Base64.getEncoder().encode(signData)), UTF8_ENCODING);
+            mac.init(new SecretKeySpec(monitorConfig.getDingTalkSecret().getBytes(StandardCharsets.UTF_8), HMAC_SHA256));
+            byte[] signData = mac.doFinal(string.getBytes(StandardCharsets.UTF_8));
+            sign = URLEncoder.encode(new String(Base64.getEncoder().encode(signData)), "UTF-8");
 
         } catch (Exception e) {
             logger.error("exception occurred, cause[{}]", e.getMessage(), e);
@@ -84,7 +83,7 @@ public class MonitorManager {
     }
 
     private List<Alarm> getAlarmsFromQueue() {
-        List<Alarm> alertEntities = new ArrayList();
+        List<Alarm> alertEntities = new ArrayList<>();
         do {
             Alarm alarm = queue.poll();
             if (alarm == null) {
@@ -115,6 +114,7 @@ public class MonitorManager {
     }
 
     private DingMsgRequest generateDingMessage(String url, List<Alarm> alarms) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Alarm startAlarm = alarms.stream().findFirst().get();
         Alarm lastAlarm = alarms.stream().limit(alarms.size() - 1).findFirst().get();
         int size = alarms.size();
@@ -122,13 +122,12 @@ public class MonitorManager {
         String content = startAlarm.getContent();
         Date startTime = lastAlarm.getTimestamp();
         Date endTime = startAlarm.getTimestamp();
-        String title = String.format("%s 于 %s 至 %s 发生告警通知，等级[%s]\n",
-                appName, FORMAT.format(startTime), FORMAT.format(endTime), startAlarm.getType());
+        String title = String.format("【%s】于%s 至 %s发生告警通知，等级【%s】",
+                appName, format.format(startTime), format.format(endTime), startAlarm.getType());
         StringBuilder messageBuilder = new StringBuilder();
-        messageBuilder.append(title);
+        messageBuilder.append(title).append("\n");
         messageBuilder.append(content).append("\n");
-        String times = String.format("累计报警次数: [%d]\n",
-                size);
+        String times = String.format("合并报警次数: [%d]", size);
         messageBuilder.append(times).append("\n");
 
         JSONObject request = new JSONObject();

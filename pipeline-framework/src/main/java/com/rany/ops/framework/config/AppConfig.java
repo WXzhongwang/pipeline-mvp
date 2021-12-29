@@ -3,8 +3,10 @@ package com.rany.ops.framework.config;
 import java.io.Serializable;
 
 /**
+ * AppConfig
+ *
  * @author dick
- * @description TODO
+ * @description AppConfig
  * @date 2021/12/18 9:57 下午
  * @email 18668485565@163.com
  */

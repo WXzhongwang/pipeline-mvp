@@ -11,7 +11,7 @@ import java.util.List;
  * pipeline管理
  *
  * @author dick
- * @description TODO
+ * @description pipeline管理
  * @date 2021/12/20 10:52 下午
  * @email 18668485565@163.com
  */
@@ -35,6 +35,9 @@ public class PipelineContext implements IPipelineLifeCycle {
      */
     private SlsConfig slsConfig;
 
+    /**
+     * 流程控制
+     */
     private ProcessManager processManager;
 
     public PipelineContext(ProcessConfig process, SlsConfig slsConfig) {

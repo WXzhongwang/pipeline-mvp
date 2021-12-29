@@ -9,8 +9,10 @@ import com.rany.ops.framework.log.LoggerKeys;
 import org.apache.commons.collections.CollectionUtils;
 
 /**
+ * Channel
+ *
  * @author dick
- * @description TODO
+ * @description Channel
  * @date 2021/12/16 10:51 上午
  * @email 18668485565@163.com
  */
@@ -36,10 +38,8 @@ public abstract class Channel extends AbstractChannel<KvRecord, KvRecord> {
             ((JSONObject) pluginTimes).put(name, cost);
         }
         // channel 无后续channel 或 sink 执行结束，日志收口
-        if (CollectionUtils.isEmpty(this.getNext())) {
-            if (slsConfig.isEnable()) {
-                Log.info(output, slsConfig.getLoggerKeys());
-            }
+        if (CollectionUtils.isEmpty(this.getNext()) && slsConfig.isEnable()) {
+            Log.info(output, slsConfig.getLoggerKeys());
         }
     }
 

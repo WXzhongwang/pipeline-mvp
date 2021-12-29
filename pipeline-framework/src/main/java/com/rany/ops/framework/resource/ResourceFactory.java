@@ -78,11 +78,11 @@ public class ResourceFactory implements PooledObjectFactory<Resource> {
 
     @Override
     public void activateObject(PooledObject<Resource> pooledObject) {
-
+        //nothing to do
     }
 
     @Override
     public void passivateObject(PooledObject<Resource> pooledObject) {
-
+        //nothing to do
     }
 }

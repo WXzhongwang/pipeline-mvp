@@ -6,15 +6,17 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
+ * DummyResource
+ *
  * @author dick
- * @description TODO
+ * @description DummyResource
  * @date 2021/12/22 8:44 下午
  * @email 18668485565@163.com
  */
 
 public class DummyResource extends Resource<AtomicLong> {
 
-    private final static String KEY_INIT_VALUE = "initValue";
+    private static final String KEY_INIT_VALUE = "initValue";
 
     public DummyResource(String name) {
         super(name);
@@ -27,6 +29,6 @@ public class DummyResource extends Resource<AtomicLong> {
 
     @Override
     public void destroy() {
-
+        //nothing to do
     }
 }

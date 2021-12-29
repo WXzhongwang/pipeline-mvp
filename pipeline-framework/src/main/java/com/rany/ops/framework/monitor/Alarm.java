@@ -62,7 +62,7 @@ public class Alarm implements Serializable {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(content.getBytes());
-            return String.format("%s_%s_%d", appName, type, new BigInteger(1, md.digest()).toString(16));
+            return String.format("%s_%s_%s", appName, type, new BigInteger(1, md.digest()).toString(16));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }

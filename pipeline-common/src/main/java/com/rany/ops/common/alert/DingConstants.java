@@ -1,13 +1,18 @@
 package com.rany.ops.common.alert;
 
 /**
+ * dingding 常量
+ *
  * @author dick
- * @description TODO
+ * @description dingding 常量
  * @date 2021/9/24 11:34 下午
  * @email 18668485565@163.com
  */
 
 public final class DingConstants {
+
+    private DingConstants() {
+    }
 
     /**
      * msg type

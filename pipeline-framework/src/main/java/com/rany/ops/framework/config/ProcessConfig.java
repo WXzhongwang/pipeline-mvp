@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
+ * ProcessConfig
+ *
  * @author dick
- * @description TODO
+ * @description ProcessConfig
  * @date 2021/12/20 11:15 下午
  * @email 18668485565@163.com
  */

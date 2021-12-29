@@ -30,12 +30,13 @@ public abstract class Pipeline implements IPipelineLifeCycle {
 
     @Override
     public boolean open() {
-        boolean startUp = source.start();
-        if (startUp) {
-            if (!source.run()) {
-                logger.error("source [{}] open failed", source.getName());
-                return false;
-            }
+        if (source.start()) {
+            logger.error("source [{}] start failed", source.getName());
+            return false;
+        }
+        if (!source.run()) {
+            logger.error("source [{}] open failed", source.getName());
+            return false;
         }
         return true;
     }

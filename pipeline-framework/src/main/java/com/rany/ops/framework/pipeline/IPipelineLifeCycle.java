@@ -1,8 +1,10 @@
 package com.rany.ops.framework.pipeline;
 
 /**
+ * IPipelineLifeCycle
+ *
  * @author dick
- * @description TODO
+ * @description pipeline 生命周期函数
  * @date 2021/12/20 11:30 下午
  * @email 18668485565@163.com
  */

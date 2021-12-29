@@ -1,26 +1,28 @@
 package com.rany.ops.common.alert;
 
-import com.sun.org.slf4j.internal.Logger;
-import com.sun.org.slf4j.internal.LoggerFactory;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * DingUtils
+ *
  * @author dick
- * @description TODO
+ * @description DingUtils
  * @date 2021/9/25 12:00 上午
  * @email 18668485565@163.com
  */
 
 public class DingUtils {
 
-    private final static Logger logger = LoggerFactory.getLogger(DingUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(DingUtils.class);
 
     private DingUtils() {
     }
@@ -45,7 +47,7 @@ public class DingUtils {
             }
             return true;
         } catch (IOException e) {
-            logger.error("发送机器人消息：", e.getMessage());
+            logger.error("发送机器人消息：{}", e.getMessage(), e);
         }
         return false;
     }

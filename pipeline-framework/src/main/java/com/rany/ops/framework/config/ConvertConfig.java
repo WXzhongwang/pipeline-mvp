@@ -6,8 +6,10 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
+ * ConvertConfig
+ *
  * @author dick
- * @description TODO
+ * @description ConvertConfig
  * @date 2021/12/24 6:12 下午
  * @email 18668485565@163.com
  */
@@ -16,9 +18,6 @@ public class ConvertConfig implements Serializable {
 
     private String className;
     private Map<String, Object> config;
-
-    public ConvertConfig() {
-    }
 
     public String getClassName() {
         return className;

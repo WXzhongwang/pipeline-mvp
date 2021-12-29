@@ -22,8 +22,6 @@ public abstract class Sink extends AbstractSink<KvRecord, KvRecord> {
         super(name);
     }
 
-    protected static ThreadLocal<Long> processTime = new ThreadLocal<>();
-
     @Override
     public void before(KvRecord input) {
         long processStartTime = System.currentTimeMillis();

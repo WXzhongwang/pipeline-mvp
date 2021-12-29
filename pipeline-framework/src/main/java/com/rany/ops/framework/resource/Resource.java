@@ -9,7 +9,7 @@ import java.util.Map;
  * 资源抽象
  *
  * @author dick
- * @description TODO
+ * @description 资源抽象
  * @date 2021/12/19 8:54 下午
  * @email 18668485565@163.com
  */

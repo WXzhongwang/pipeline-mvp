@@ -3,8 +3,10 @@ package com.rany.ops.common.alert;
 import com.alibaba.fastjson.JSONObject;
 
 /**
+ * DingMsgRequest
+ *
  * @author dick
- * @description TODO
+ * @description DingMsgRequest
  * @date 2021/9/25 12:10 上午
  * @email 18668485565@163.com
  */
