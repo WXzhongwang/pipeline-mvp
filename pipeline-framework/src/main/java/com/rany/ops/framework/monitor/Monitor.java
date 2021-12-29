@@ -82,18 +82,17 @@ public class Monitor {
     /**
      * 告警处理
      *
-     * @param name      插件名称
      * @param type      告警等级
      * @param message   告警消息
      * @param throwable 异常
      */
-    public void sendAlarm(String name, String type, String message, Throwable throwable) {
+    public void sendAlarm(String message, String type, Throwable throwable) {
         logger.error("[{}] occur exception, exception level [{}], message [{}]",
-                name, type, message, throwable);
+                component, type, message, throwable);
         String content = String.format("[%s] occur exception, message [%s]",
-                name, message);
+                component, message);
         Alarm alarm = new Alarm();
-        alarm.setAppName(type);
+        alarm.setAppName(appName);
         alarm.setType(type);
         alarm.setContent(content);
         alarm.setTimestamp(new Date());
