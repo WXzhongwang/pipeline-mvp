@@ -264,18 +264,16 @@ VM options:
 
 需配置dingTalkUrl && dingTalkSecret 即可。
 
-```
-
-"monitor": {
-"enable": "true", #开关
-"dingTalkUrl": "",
-"dingTalkSecret": "",
-"mobiles": [
-"1866848xxxx"
-],
-"alertName": "pipeline告警"
-}
-
+```text
+  "monitor": {
+    "enable": "true", #开关
+    "dingTalkUrl": "",
+    "dingTalkSecret": "",
+    "mobiles": [
+      "1866848xxxx"
+    ],
+    "alertName": "pipeline告警"
+  }
 ```
 
 
