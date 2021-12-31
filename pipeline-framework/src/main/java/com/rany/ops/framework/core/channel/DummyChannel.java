@@ -22,7 +22,7 @@ public class DummyChannel extends Channel {
         super(name);
     }
 
-    @Res(name = "${counter}", allowNull = false)
+    @Res(name = "${counter}")
     private AtomicLong counter;
 
     @Override

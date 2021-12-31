@@ -94,7 +94,7 @@ VM options:
 -Dlogging.config=logback.xml 
 ```
 
-### 应用流程配置文件
+## 应用流程配置文件
 
 资源文件格式，采用json。 框架resource资源路径下存在一个 app.json (样例代码)
 
@@ -150,21 +150,101 @@ VM options:
 }
 ```
 
+### 应用名基础配置
+
+```aidl
+  "app": {
+    "name": "pipe-first-demo", //应用名
+    "emergency": "dick" // 紧急联系人
+  }
+```
+
+### sls流程日志配置
+
+```aidl
+  "sls": {
+    "enable": true, // 是否开启日志记录功能
+    "loggerKeys": [
+      "count"  // 最终流程处理完成后需要打印哪些字段
+    ]
+  }
+```
+
+### 监控告警日志
+
+```aidl
+  "monitor": {
+    "enable": "true", //是否开启
+    "dingTalkUrl": "", //钉钉告警机器人
+    "dingTalkSecret": "", //secret
+    "alertName": "pipeline告警" //alertName
+  }
+```
+
+### 流程核心
+
+```aidl
+
+  "process": {
+    "sources": [
+      {
+        "name": "fake_source",
+        "className": "com.rany.ops.framework.core.source.FakeSource",
+        "config": {
+          "timeIntervalMs": 3000
+        },
+        "convertor": {
+          "className": "",
+          "config": {
+          }
+        }
+        "next": [
+          "fake_channel"
+        ]
+      }
+    ],
+    "channels": [
+      {
+        "name": "fake_channel",
+        "className": "com.rany.ops.framework.core.channel.DummyChannel",
+        "config": {},
+        "next": []
+      }
+    ],
+    "sinks": [
+        {
+          "name": "fake_sink",
+          "className": "xxxx",
+          "config": {}
+        }
+    ]
+  }
+```
+
+自定义流程核心配置。需保证内部不会成环（DAG），框架层面启动时候会做校验。
+
+1. source: 流程起点
+    - convertor: 当source启动后，会将消息进行下发，存在很多时候，需要对MQ或者其他数据源中的数据进行一定格式的转换，因此可以在source配置节点中额外配置一个convertor， 具体抽象可以参看
+      MessageConvertor.convert(Object object)方法
+2. channel: 流程数据处理环节
+    - 数据加工： 可以对数据进行加工并扭转到下一工作channel，或进行数据下沉
+3. sink: 流程结束
+    - 数据下沉: 可以将由前置流程处理完成后的数据进行存储或二次分发
+
 ## 资源配置文件
 
 资源文件格式，采用json,每个资源的name需要独一无二。 框架resource资源路径下存在一个 resource.json (样例代码)
+。具体实际应用场景，可通过 -r 命令参数指定其他资源文件。
 
-具体实际应用场景，可通过 -r 命令参数指定其他资源文件
-
-```
+```aidl
 [
   {
     "name": "counter",
     "className": "com.rany.ops.framework.resource.DummyResource",
     "configMap": {
-      "initValue": 20
+      "initValue": 20 
     },
-    "instanceNum": 1
+    "instanceNum": 1 
   }
 ]
 
@@ -183,15 +263,17 @@ VM options:
 需配置dingTalkUrl && dingTalkSecret 即可。
 
 ```
-  "monitor": {
-    "enable": "true", #开关
-    "dingTalkUrl": "",
-    "dingTalkSecret": "",
-    "mobiles": [
-    "1866848xxxx"
-    ],
-    "alertName": "pipeline告警"
-  }
+
+"monitor": {
+"enable": "true", #开关
+"dingTalkUrl": "",
+"dingTalkSecret": "",
+"mobiles": [
+"1866848xxxx"
+],
+"alertName": "pipeline告警"
+}
+
 ```
 
 
