@@ -61,12 +61,9 @@ Flume:
 ## 模块简要介绍
 
 ```
-公共层
-<module>pipeline-common</module>
-框架层
-<module>pipeline-framework</module>
-插件层（囊括基础的source,channel,sink），可按需定制
-<module>pipeline-plugin</module>
+<module>pipeline-common</module><!--公共层-->
+<module>pipeline-framework</module><!--框架层-->
+<module>pipeline-plugin</module><!--插件层-->
 ```
 
 ## 启动
