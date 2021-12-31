@@ -64,6 +64,7 @@ Flume:
 <module>pipeline-common</module><!--公共层-->
 <module>pipeline-framework</module><!--框架层-->
 <module>pipeline-plugin</module><!--插件层-->
+<module>pipeline-resource</module><!--资源层-->
 ```
 
 ## 启动
