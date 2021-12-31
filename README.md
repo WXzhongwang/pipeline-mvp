@@ -100,7 +100,7 @@ VM options:
 
 具体实际应用场景，可通过 -c 命令参数指定其他流程定义文件
 
-```
+```json
 {
   "app": {
     "name": "pipe-first-demo",
@@ -140,11 +140,11 @@ VM options:
       }
     ],
     "sinks": [
-        {
-          "name": "fake_sink",
-          "className": "xxxx",
-          "config": {}
-        }
+      {
+        "name": "fake_sink",
+        "className": "xxxx",
+        "config": {}
+      }
     ]
   }
 }
@@ -152,73 +152,75 @@ VM options:
 
 ### 应用名基础配置
 
-```aidl
+```json
   "app": {
-    "name": "pipe-first-demo", //应用名
-    "emergency": "dick" // 紧急联系人
-  }
+"name": "pipe-first-demo", //应用名
+"emergency": "dick" // 紧急联系人
+}
 ```
 
 ### sls流程日志配置
 
-```aidl
+```json
   "sls": {
-    "enable": true, // 是否开启日志记录功能
-    "loggerKeys": [
-      "count"  // 最终流程处理完成后需要打印哪些字段
-    ]
-  }
+"enable": true, // 是否开启日志记录功能
+"loggerKeys": [
+"count"  // 最终流程处理完成后需要打印哪些字段
+]
+}
 ```
 
 ### 监控告警日志
 
-```aidl
+```json
   "monitor": {
-    "enable": "true", //是否开启
-    "dingTalkUrl": "", //钉钉告警机器人
-    "dingTalkSecret": "", //secret
-    "alertName": "pipeline告警" //alertName
-  }
+"enable": "true", //是否开启
+"dingTalkUrl": "", //钉钉告警机器人
+"dingTalkSecret": "", //secret
+"alertName": "pipeline告警" //alertName
+}
 ```
 
 ### 流程核心
 
-```aidl
+```json
 
-  "process": {
-    "sources": [
-      {
-        "name": "fake_source",
-        "className": "com.rany.ops.framework.core.source.FakeSource",
-        "config": {
-          "timeIntervalMs": 3000
-        },
-        "convertor": {
-          "className": "",
-          "config": {
-          }
-        }
-        "next": [
-          "fake_channel"
-        ]
-      }
-    ],
-    "channels": [
-      {
-        "name": "fake_channel",
-        "className": "com.rany.ops.framework.core.channel.DummyChannel",
-        "config": {},
-        "next": []
-      }
-    ],
-    "sinks": [
-        {
-          "name": "fake_sink",
-          "className": "xxxx",
-          "config": {}
-        }
-    ]
-  }
+"process": {
+"sources": [
+{
+"name": "fake_source",
+"className": "com.rany.ops.framework.core.source.FakeSource",
+"config": {
+"timeIntervalMs": 3000
+},
+"convertor": {
+"className": "",
+"config": {
+}
+}
+"next": [
+"fake_channel"
+]
+}
+],
+"channels": [
+{
+"name": "fake_channel",
+"className": "com.rany.ops.framework.core.channel.DummyChannel",
+"config": {
+},
+"next": []
+}
+],
+"sinks": [
+{
+"name": "fake_sink",
+"className": "xxxx",
+"config": {
+}
+}
+]
+}
 ```
 
 自定义流程核心配置。需保证内部不会成环（DAG），框架层面启动时候会做校验。
