@@ -45,7 +45,7 @@ public class Bootstrap {
             }
         }
         // 串流程
-        context = new PipelineContext(config.getProcess(), config.getSls());
+        context = new PipelineContext(config.getApp().getName(), config.getProcess(), config.getSls());
         if (!context.prepare()) {
             logger.info("context prepare failed...");
             return false;

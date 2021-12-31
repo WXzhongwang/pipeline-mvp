@@ -2,6 +2,7 @@ package com.rany.ops.framework.core;
 
 import com.rany.ops.common.json.CopyUtils;
 import com.rany.ops.framework.config.SlsConfig;
+import com.rany.ops.framework.monitor.Monitor;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -34,6 +35,7 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
     protected volatile Collection<Component> prev = new ArrayList<>();
     protected volatile String name;
     protected volatile Set<String> nextProcessors;
+    protected Monitor monitor;
 
     public Set<String> getNextProcessors() {
         return nextProcessors;
@@ -41,6 +43,14 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
 
     public void setNextProcessors(Set<String> nextProcessors) {
         this.nextProcessors = nextProcessors;
+    }
+
+    public Monitor getMonitor() {
+        return monitor;
+    }
+
+    public void setMonitor(Monitor monitor) {
+        this.monitor = monitor;
     }
 
     @Override
@@ -113,6 +123,7 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
         if (!CollectionUtils.isEmpty(downStreams)) {
             downStreams.forEach(Component::start);
         }
+        this.monitor.start();
         logger.info("[{}] start success......", this.name);
         return true;
     }
@@ -130,6 +141,7 @@ public abstract class AbstractComponent<T, R> implements Component<T, R> {
         if (!CollectionUtils.isEmpty(downStreams)) {
             downStreams.forEach(Component::stop);
         }
+        this.monitor.stop();
         logger.info("[{}] shutdown success......", this.name);
         return true;
     }

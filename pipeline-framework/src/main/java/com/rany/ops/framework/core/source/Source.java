@@ -6,6 +6,7 @@ import com.rany.ops.framework.core.MessageConvertor;
 import com.rany.ops.framework.kv.KvRecord;
 import com.rany.ops.framework.log.Log;
 import com.rany.ops.framework.log.LoggerKeys;
+import com.rany.ops.framework.monitor.Alarm;
 
 /**
  * 抽象Source
@@ -46,6 +47,7 @@ public abstract class Source extends AbstractSource<KvRecord, KvRecord> {
             // 失败异常捕捉
             super.execute(input);
         } catch (Exception ex) {
+            monitor.sendAlarm(ex.getMessage(), Alarm.ALERT_TYPE_ERROR, ex);
             logger.warn("source [{}] occur an exception......", this.name, ex);
             if (!input.has(LoggerKeys.SLS_PROCESS_PLUGINS)) {
                 input.put(LoggerKeys.SLS_PROCESS_PLUGINS, new JSONArray());
@@ -53,7 +55,6 @@ public abstract class Source extends AbstractSource<KvRecord, KvRecord> {
             JSONArray array = (JSONArray) input.get(LoggerKeys.SLS_PROCESS_PLUGINS);
             String exceptionOne = (String) array.get(array.size() - 1);
             input.put(LoggerKeys.SLS_EXCEPTION_PLUGIN, exceptionOne);
-
             if (slsConfig.isEnable()) {
                 Log.info(input, slsConfig.getLoggerKeys());
             }
@@ -62,6 +63,7 @@ public abstract class Source extends AbstractSource<KvRecord, KvRecord> {
 
     @Override
     public void after(KvRecord output) {
+        // 记录耗时
         long cost = System.currentTimeMillis() - processTime.get();
         if (!output.has(LoggerKeys.SLS_PLUGIN_TIMES)) {
             output.put(LoggerKeys.SLS_PLUGIN_TIMES, new JSONObject());

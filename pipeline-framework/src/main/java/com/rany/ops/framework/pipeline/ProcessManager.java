@@ -15,6 +15,7 @@ import com.rany.ops.framework.core.MessageConvertor;
 import com.rany.ops.framework.core.channel.Channel;
 import com.rany.ops.framework.core.sink.Sink;
 import com.rany.ops.framework.core.source.Source;
+import com.rany.ops.framework.monitor.Monitor;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,13 +49,16 @@ public class ProcessManager {
 
     private SlsConfig slsConfig;
 
+    private String appName;
+
     public ProcessManager() {
         sourceMap = new HashMap<>();
         channelMap = new HashMap<>();
         sinkMap = new HashMap<>();
     }
 
-    public boolean init(final ProcessConfig process, final SlsConfig slsConfig) {
+    public boolean init(final String appName, final ProcessConfig process, final SlsConfig slsConfig) {
+        this.appName = appName;
         logger.info("processor manager is init ...");
         if (Objects.isNull(process)) {
             logger.error("process config can not be null");
@@ -108,6 +112,7 @@ public class ProcessManager {
                 return false;
             }
             Sink sink = (Sink) reflectClass.createInstance(sinkName);
+
             if (sink == null) {
                 logger.error("create sink [{}] instance failed", sinkName);
                 return false;
@@ -121,7 +126,8 @@ public class ProcessManager {
 
             // resource inject
             ResDependencyInjector.inject(sink);
-
+            Monitor monitor = new Monitor(appName, sinkName);
+            sink.setMonitor(monitor);
             sinkMap.put(sinkName, sink);
             logger.info("sink [{}] has finished init", sinkName);
         }
@@ -159,6 +165,8 @@ public class ProcessManager {
             channel.setSlsConfig(slsConfig);
             // resource inject
             ResDependencyInjector.inject(channel);
+            Monitor monitor = new Monitor(appName, channelName);
+            channel.setMonitor(monitor);
             channelMap.put(channelName, channel);
             logger.info("channel [{}] has finished init", channelName);
         }
@@ -202,6 +210,8 @@ public class ProcessManager {
             source.setNextProcessors(sourceConfig.getNext());
             // resource inject
             ResDependencyInjector.inject(source);
+            Monitor monitor = new Monitor(appName, sourceName);
+            source.setMonitor(monitor);
             sourceMap.put(sourceName, source);
             logger.info("source [{}] has finished init", sourceName);
 

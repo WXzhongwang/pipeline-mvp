@@ -26,11 +26,10 @@ public class Monitor {
     private String component;
 
     /**
-     * 应用名
-     * 插件名
+     * 构造monitor监听
      *
-     * @param appName
-     * @param component
+     * @param appName   应用名
+     * @param component 插件名
      */
     public Monitor(String appName, String component) {
         this.appName = appName;
@@ -39,9 +38,11 @@ public class Monitor {
 
     public boolean start() {
         String workThreadName = String.format("%s_%s", DEFAULT_THREAD_NAME_PREFIX, component);
-        running = true;
-        workThread = new Thread(new Report(), workThreadName);
-        workThread.start();
+        if (!running) {
+            running = true;
+            workThread = new Thread(new Report(), workThreadName);
+            workThread.start();
+        }
         return true;
     }
 
@@ -67,15 +68,12 @@ public class Monitor {
 
     static class Report implements Runnable {
 
-        @Override
-        public void run() {
-        }
-
         /**
          * 性能指标上报
          */
-        private void report() {
-            // no implements now
+        @Override
+        public void run() {
+            // 上报指标
         }
     }
 

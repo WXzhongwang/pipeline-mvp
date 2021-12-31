@@ -77,7 +77,9 @@ public class MonitorManager {
             List<Alarm> alarmsFromQueue = this.getAlarmsFromQueue();
             List<DingMsgRequest> msgRequests = this.combineAlarms(alarmsFromQueue);
             for (DingMsgRequest msgRequest : msgRequests) {
-                DingUtils.send(msgRequest);
+                if (monitorConfig.isEnable()) {
+                    DingUtils.send(msgRequest);
+                }
             }
         }, 1000, 5000, TimeUnit.MILLISECONDS);
         return true;

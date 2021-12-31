@@ -14,9 +14,21 @@ import java.util.Set;
 
 public class MonitorConfig implements Serializable {
 
+    /**
+     * 是否开启告警
+     */
     private boolean enable;
+    /**
+     * 钉钉告警hook地址
+     */
     private String dingTalkUrl;
+    /**
+     * secret
+     */
     private String dingTalkSecret;
+    /**
+     * 需要@ 哪些人
+     */
     private Set<String> mobiles;
 
     public boolean isEnable() {

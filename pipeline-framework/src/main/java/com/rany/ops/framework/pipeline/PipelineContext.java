@@ -21,6 +21,10 @@ public class PipelineContext implements IPipelineLifeCycle {
     private static final Logger logger = LoggerFactory.getLogger(PipelineContext.class);
 
     /**
+     * 应用程序名称
+     */
+    private String appName;
+    /**
      * 支持多渠道并行
      */
     private List<Pipeline> pipelines;
@@ -35,12 +39,8 @@ public class PipelineContext implements IPipelineLifeCycle {
      */
     private SlsConfig slsConfig;
 
-    /**
-     * 流程控制
-     */
-    private ProcessManager processManager;
-
-    public PipelineContext(ProcessConfig process, SlsConfig slsConfig) {
+    public PipelineContext(String appName, ProcessConfig process, SlsConfig slsConfig) {
+        this.appName = appName;
         this.process = process;
         this.slsConfig = slsConfig;
 
@@ -49,8 +49,8 @@ public class PipelineContext implements IPipelineLifeCycle {
     @Override
     public boolean prepare() {
         logger.info("multiple pipe line context is ready to prepare...");
-        processManager = new ProcessManager();
-        if (!processManager.init(process, slsConfig)) {
+        ProcessManager processManager = new ProcessManager();
+        if (!processManager.init(appName, process, slsConfig)) {
             logger.info("process manager init failed...");
             return false;
         }

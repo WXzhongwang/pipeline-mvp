@@ -6,6 +6,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.rany.ops.framework.kv.KvRecord;
 import com.rany.ops.framework.log.Log;
 import com.rany.ops.framework.log.LoggerKeys;
+import com.rany.ops.framework.monitor.Alarm;
 import org.apache.commons.collections.CollectionUtils;
 
 /**
@@ -48,6 +49,7 @@ public abstract class Channel extends AbstractChannel<KvRecord, KvRecord> {
         try {
             super.execute(input);
         } catch (Exception ex) {
+            monitor.sendAlarm(ex.getMessage(), Alarm.ALERT_TYPE_ERROR, ex);
             logger.warn("channel [{}] occur an exception......", this.name, ex);
             JSONArray array = (JSONArray) input.get(LoggerKeys.SLS_PROCESS_PLUGINS);
             String exceptionOne = (String) array.get(array.size() - 1);
