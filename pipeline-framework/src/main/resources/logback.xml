@@ -50,16 +50,6 @@
             <!--日志文件保留天数-->
             <MaxHistory>30</MaxHistory>
         </rollingPolicy>
-        <!--        <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">-->
-        <!--            <providers class="net.logstash.logback.composite.loggingevent.LoggingEventJsonProviders">-->
-        <!--                <pattern>-->
-        <!--                    <pattern>-->
-        <!--                        %m%n-->
-        <!--                    </pattern>-->
-        <!--                </pattern>-->
-        <!--            </providers>-->
-        <!--            <charset>UTF-8</charset>-->
-        <!--        </encoder>-->
         <encoder>
             <pattern>%m%n</pattern>
         </encoder>
