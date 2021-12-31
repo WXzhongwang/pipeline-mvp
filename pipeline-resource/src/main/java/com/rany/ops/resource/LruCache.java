@@ -16,16 +16,16 @@ import java.util.concurrent.TimeUnit;
  * @date 2021/12/24 9:32 下午
  * @email 18668485565@163.com
  */
-public class LRUCache {
+public class LruCache {
 
-    private static final Logger logger = LoggerFactory.getLogger(LRUCache.class);
+    private static final Logger logger = LoggerFactory.getLogger(LruCache.class);
 
     private static final int DEFAULT_CACHE_SIZE = 100;
 
     private Cache<String, Object> cache;
     private RemovalListener<String, Object> removalListener;
 
-    public LRUCache(int cacheSize, int expiredTimeMinutes) {
+    public LruCache(int cacheSize, int expiredTimeMinutes) {
         removalListener = removal -> logger.info("cache data[{}->{}] is evicted",
                 removal.getKey(), removal.getValue().toString());
         cacheSize = cacheSize <= 0 ? DEFAULT_CACHE_SIZE : cacheSize;

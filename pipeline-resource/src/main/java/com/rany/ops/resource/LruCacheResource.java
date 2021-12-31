@@ -15,19 +15,19 @@ import java.util.Map;
  * @date 2021/12/24 9:32 下午
  * @email 18668485565@163.com
  */
-public class LRUCacheResource extends Resource<LRUCache> {
+public class LruCacheResource extends Resource<LruCache> {
 
-    private static final Logger logger = LoggerFactory.getLogger(LRUCacheResource.class);
+    private static final Logger logger = LoggerFactory.getLogger(LruCacheResource.class);
 
     private static final String KEY_CACHE_SIZE = "cacheSize";
     private static final String KEY_EXPIRED_TIME_MINUTES = "expiredTimeMinutes";
 
-    public LRUCacheResource(String name) {
+    public LruCacheResource(String name) {
         super(name);
     }
 
     @Override
-    protected LRUCache create(Map<String, Object> configMap) {
+    protected LruCache create(Map<String, Object> configMap) {
         if (!configMap.containsKey(KEY_CACHE_SIZE)) {
             logger.error("missing param [{}]", KEY_CACHE_SIZE);
             return null;
@@ -35,7 +35,7 @@ public class LRUCacheResource extends Resource<LRUCache> {
         int cacheSize = MapUtil.getMapValue(configMap, KEY_CACHE_SIZE, Integer.class);
         int expiredTimeMinutes = configMap.containsKey(KEY_EXPIRED_TIME_MINUTES) ?
                 (Integer) configMap.get(KEY_EXPIRED_TIME_MINUTES) : -1;
-        return new LRUCache(cacheSize, expiredTimeMinutes);
+        return new LruCache(cacheSize, expiredTimeMinutes);
     }
 
     @Override
