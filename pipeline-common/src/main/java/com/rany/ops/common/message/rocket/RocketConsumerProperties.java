@@ -112,7 +112,7 @@ public class RocketConsumerProperties {
             logger.error("topic is empty");
             return false;
         }
-        if (StringUtils.isEmpty(accessKeyId) || StringUtils.isEmpty(accessKeyId)) {
+        if (StringUtils.isEmpty(accessKeyId) || StringUtils.isEmpty(accessKeySecret)) {
             logger.error("access key/secret is empty");
             return false;
         }
