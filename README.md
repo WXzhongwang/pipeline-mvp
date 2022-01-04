@@ -238,7 +238,7 @@ VM options:
 资源文件格式，采用json,每个资源的name需要独一无二。 框架resource资源路径下存在一个 resource.json (样例代码)
 。具体实际应用场景，可通过 -r 命令参数指定其他资源文件。
 
-```aidl
+```text
 [
   {
     "name": "counter",
