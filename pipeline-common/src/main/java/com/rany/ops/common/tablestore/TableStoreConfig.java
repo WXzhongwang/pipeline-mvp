@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * TableStore config
+ *
  * @author dick
  * @description TableStore
  * @date 2021/12/17 10:31 下午
@@ -53,5 +54,45 @@ public class TableStoreConfig {
             return false;
         }
         return true;
+    }
+
+    public String getEndpoint() {
+        return endpoint;
+    }
+
+    public void setEndpoint(String endpoint) {
+        this.endpoint = endpoint;
+    }
+
+    public String getInstance() {
+        return instance;
+    }
+
+    public void setInstance(String instance) {
+        this.instance = instance;
+    }
+
+    public String getAccessKeyId() {
+        return accessKeyId;
+    }
+
+    public void setAccessKeyId(String accessKeyId) {
+        this.accessKeyId = accessKeyId;
+    }
+
+    public String getAccessKeySecret() {
+        return accessKeySecret;
+    }
+
+    public void setAccessKeySecret(String accessKeySecret) {
+        this.accessKeySecret = accessKeySecret;
+    }
+
+    public int getRetryCnt() {
+        return retryCnt;
+    }
+
+    public void setRetryCnt(int retryCnt) {
+        this.retryCnt = retryCnt;
     }
 }
