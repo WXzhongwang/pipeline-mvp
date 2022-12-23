@@ -30,7 +30,7 @@ public abstract class Pipeline implements IPipelineLifeCycle {
 
     @Override
     public boolean open() {
-        if (source.start()) {
+        if (!source.start()) {
             logger.error("source [{}] start failed", source.getName());
             return false;
         }
