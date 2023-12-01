@@ -31,7 +31,7 @@ public class Log {
 
     private static final Set<String> SLS_LOG_PROPS = new HashSet<>();
 
-    private static DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     static {
         SLS_LOG_PROPS.add(LoggerKeys.SLS_LOGGER_TIME);
